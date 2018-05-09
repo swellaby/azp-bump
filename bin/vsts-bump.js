@@ -2,4 +2,4 @@
 
 'use strict';
 
-console.log('Not yet implemented :(');
+throw new Error('Not yet implemented');

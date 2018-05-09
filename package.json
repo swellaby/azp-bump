@@ -1,6 +1,6 @@
 {
   "name": "vsts-bump",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Lib/CLI for bumping the version of VSTS task files",
   "license": "MIT",
   "main": "lib/index.js",
@@ -18,8 +18,20 @@
     }
   ],
   "scripts": {
+    "build": "npm run lint && npm run test",
+    "clean": "rimraf .testresults .coverage",
+    "clean:unit": "rimraf .testresults/unit .coverage/unit",
+    "clean:component": "rimraf .testresults/component .coverage/component",
+    "clean:functional": "rimraf .testresults/functional .coverage/functional",
     "lint": "eslint **/*.js",
-    "test": "mocha"
+    "test": "npm run test:unit",
+    "test:all": "npm run test:unit && npm run test:component && npm run test:functional",
+    "test:unit": "mocha --opts test/unit/mocha.opts",
+    "pretest:unit": "npm run clean:unit",
+    "test:component": "mocha --opts test/component/mocha.opts",
+    "pretest:component": "npm run clean:component",
+    "test:functional": "mocha --opts test/functional/mocha.opts",
+    "pretest:functional": "npm run clean:functional"
   },
   "repository": {
     "type": "git",
@@ -37,9 +49,12 @@
     "@swellaby/nyc-config": "^1.0.9",
     "chai": "^4.1.2",
     "eslint": "^4.19.1",
+    "husky": "^1.0.0-rc.4",
     "mocha": "^5.1.1",
     "mocha-multi-reporters": "^1.1.7",
-    "nyc": "^11.7.2"
+    "mocha-sonarqube-reporter": "^1.0.1",
+    "nyc": "^11.7.2",
+    "rimraf": "^2.6.2"
   },
   "dependencies": {
     "commander": "^2.15.1",
