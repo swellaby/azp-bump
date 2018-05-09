@@ -1,0 +1,17 @@
+{
+    "files.exclude": {
+        "npm-debug.log": true,
+        ".testresults": true,
+        ".coverage": true,
+        "node_modules": true,        
+        ".nyc_output": true,
+        "*.tgz": true
+    },
+    "eslint.options": {
+        "configFile": "./.eslintrc.js",
+        "ignorePath": "./.eslintignore"
+    }
+}
+
+// "coverage-gutters.showLineCoverage": true,
+// "coverage-gutters.showRulerCoverage": true,

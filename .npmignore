@@ -1,0 +1,12 @@
+.testresults/
+.coverage/
+.nyc_output/
+.github/
+.vscode/
+test/
+.eslintignore
+.eslintrc.js
+*.tar*
+*.tgz*
+.ntvs_analysis.dat*
+npm-debug*
