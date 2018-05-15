@@ -3,7 +3,7 @@
 
 const program = require('commander');
 
-// const index = require('../lib/index');
+const index = require('../lib/index');
 const packageJson = require('../package.json');
 
 program
@@ -18,7 +18,7 @@ const bump = () => {
     console.log('Args: ' + program.args);
     console.log('Release Type: ' + opts['type']);
     console.log('Indent Type: ' + opts['indent']);
-    // return index.bumpWrite(program.args, opts);
+    return index.bumpWrite(program.args, opts);
 };
 
 bump();
