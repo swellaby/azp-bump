@@ -24,9 +24,9 @@ test_script:
   - npm run build
 
 after_test:
-  - ps: |
-    $wc = New-Object 'System.Net.WebClient'
-    $wc.UploadFile("https://ci.appveyor.com/api/testresults/xunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\.testresults\unit\xunit.xml))
+  - ps: >-
+      $wc = New-Object 'System.Net.WebClient'
+      $wc.UploadFile("https://ci.appveyor.com/api/testresults/xunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\.testresults\unit\xunit.xml))
 
 # for:
 # -
