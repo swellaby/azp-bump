@@ -23,13 +23,13 @@ install:
 test_script:
   - npm run build
 
-for:
--
-  matrix:
-    only:
-      - nodejs_version: "10"
-  
-  after_test:
+after_test:
   - ps: |
-        $wc = New-Object 'System.Net.WebClient'
-        $wc.UploadFile("https://ci.appveyor.com/api/testresults/xunit/$($env:APPVEYOR_JOB_ID)",(Resolve-Path .\.testresults\unit\xunit.xml))
+    $wc = New-Object 'System.Net.WebClient'
+    $wc.UploadFile("https://ci.appveyor.com/api/testresults/xunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\.testresults\unit\xunit.xml))
+
+# for:
+# -
+#   matrix:
+#     only:
+#       - nodejs_version: "10"

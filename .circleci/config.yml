@@ -30,7 +30,7 @@ jobs:
         
       - run: 
           name: build
-          command: npm run build
+          command: npm run lint && npm run coverage
       - store_artifacts:
           path: .coverage/unit/
           prefix: coverage
