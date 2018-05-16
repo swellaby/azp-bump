@@ -23,6 +23,9 @@
     "clean:unit": "rimraf .testresults/unit .coverage/unit",
     "clean:component": "rimraf .testresults/component .coverage/component",
     "clean:functional": "rimraf .testresults/functional .coverage/functional",
+    "coverage": "nyc --report-dir .coverage/unit --check-coverage false npm run test:unit",
+    "coverage:enforce": "nyc --report-dir .coverage/unit npm run test:unit",
+    "coverage:open": "npm run coverage && opn .coverage/unit/index.html",
     "lint": "eslint **/*.js",
     "test": "npm run test:unit",
     "test:all": "npm run test:unit && npm run test:component && npm run test:functional",
@@ -54,6 +57,7 @@
     "mocha-multi-reporters": "^1.1.7",
     "mocha-sonarqube-reporter": "^1.0.1",
     "nyc": "^11.7.3",
+    "opn-cli": "^3.1.0",
     "rimraf": "^2.6.2",
     "sinon": "^5.0.7"
   },
