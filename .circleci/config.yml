@@ -4,8 +4,9 @@ jobs:
     docker:
       - image: circleci/node:8
 
-    environment:
-        COVERALLS_SERVICE_NAME: "circleci"
+        environment:
+            COVERALLS_SERVICE_NAME: "circleci"
+            PROJECT_VERSION: ""
 
     working_directory: ~/repo
 
@@ -21,7 +22,7 @@ jobs:
 
       - run: npm install
       - run: sudo npm i -g sonarqube-scanner coveralls
-      - run: echo export PROJECT_VERSION=$(node -e "console.log(require('./package.json').version);")
+      - run: echo 'export PROJECT_VERSION=$(node -e "console.log(require(\'./package.json\').version);")'
 
       - save_cache:
           paths:
