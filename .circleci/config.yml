@@ -6,7 +6,6 @@ jobs:
 
         environment:
             COVERALLS_SERVICE_NAME: "circleci"
-            PROJECT_VERSION: ""
 
     working_directory: ~/repo
 
@@ -41,10 +40,10 @@ jobs:
           prefix: coverage
       - store_test_results:
           path: .testresults/unit
-      - run: echo $PROJECT_VERSION
+
       - run:
           name: sonar
-          command: sonar-scanner -Dsonar.projectVersion=$(node -e "console.log(require('./package.json').version);") -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONARCLOUD_TOKEN
+          command: sonar-scanner -Dsonar.projectVersion=$PROJECT_VERSION -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONARCLOUD_TOKEN
 
       - save_cache:
           paths:
