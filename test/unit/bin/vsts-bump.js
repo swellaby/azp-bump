@@ -17,12 +17,15 @@ suite('bin/vsts-bump Suite:', () => {
         type: 'minor',
         indent: 4
     };
-    const commanderOptsStub = sinon.stub(commander, 'opts').callsFake(() => opts);
+    let commanderOptsStub;
     let indexBumpWriteStub;
     let cli;
 
     setup(() => {
         indexBumpWriteStub = sandbox.stub(index, 'bumpWrite');
+        commander.opts = () => null;
+        commanderOptsStub = sinon.stub(commander, 'opts').callsFake(() => opts);
+        commander.args = args;
         cli = require('../../../bin/vsts-bump');
         commander.args = args;
     });
