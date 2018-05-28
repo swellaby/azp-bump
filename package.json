@@ -1,6 +1,6 @@
 {
   "name": "vsts-bump",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Lib/CLI for bumping the version of VSTS task files",
   "license": "MIT",
   "main": "lib/index.js",
@@ -48,18 +48,18 @@
   },
   "homepage": "https://github.com/swellaby/vsts-bump#readme",
   "devDependencies": {
-    "@swellaby/eslint-config": "^1.1.3",
+    "@swellaby/eslint-config": "^1.1.5",
     "@swellaby/nyc-config": "^1.0.9",
     "chai": "^4.1.2",
     "eslint": "^4.19.1",
     "husky": "^1.0.0-rc.4",
-    "mocha": "^5.1.1",
+    "mocha": "^5.2.0",
     "mocha-multi-reporters": "^1.1.7",
     "mocha-sonarqube-reporter": "^1.0.1",
-    "nyc": "^11.7.3",
+    "nyc": "^11.8.0",
     "opn-cli": "^3.1.0",
     "rimraf": "^2.6.2",
-    "sinon": "^5.0.7"
+    "sinon": "^5.0.10"
   },
   "dependencies": {
     "commander": "^2.15.1",
