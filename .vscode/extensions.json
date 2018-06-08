@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "christian-kohler.npm-intellisense",
+        "wix.vscode-import-cost",
+        "dbaeumer.vscode-eslint"
+    ],
+}
