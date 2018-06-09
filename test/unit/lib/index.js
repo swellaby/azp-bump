@@ -4,15 +4,15 @@ const assert = require('chai').assert;
 const index = require('../../../lib/index');
 
 suite('index Suite:', () => {
-    suite('bump Suite:', () => {
+    suite('getBumpedTasks Suite:', () => {
         test('Should throw not implemented error', () => {
-            assert.throws(() => index.bump(), 'Not yet implemented');
+            assert.throws(() => index.getBumpedTasks(), 'Not yet implemented');
         });
     });
 
-    suite('bumpWrite Suite:', () => {
+    suite('bumpTaskManifestVersions Suite:', () => {
         test('Should throw not implemented error', () => {
-            assert.throws(() => index.bumpWrite(), 'Not yet implemented');
+            assert.throws(() => index.bumpTaskManifestVersions(), 'Not yet implemented');
         });
     });
 });
