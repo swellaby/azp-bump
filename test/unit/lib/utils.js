@@ -97,14 +97,14 @@ suite('utils Suite:', () => {
             assert.deepEqual(opts.indent, helpers.defaultJsonIndent);
         });
 
-        test('Should use specified json indent to default when indent of 1 is specified', () => {
+        test('Should use specified json indent when indent of 1 is specified', () => {
             const indent = 1;
             opts.indent = indent;
             utils.validateJsonIndent(opts);
             assert.deepEqual(opts.indent, indent);
         });
 
-        test('Should use specified json indent to default when indent of 10 is specified', () => {
+        test('Should use specified json indent when indent of 10 is specified', () => {
             const indent = 10;
             opts.indent = indent;
             utils.validateJsonIndent(opts);
@@ -118,7 +118,7 @@ suite('utils Suite:', () => {
             assert.deepEqual(opts.indent, indent);
         });
 
-        test('Should set json indent to default when valid string indent is specified', () => {
+        test('Should set json indent when valid string indent is specified', () => {
             opts.indent = '3';
             utils.validateJsonIndent(opts);
             assert.deepEqual(opts.indent, helpers.defaultJsonIndent);
@@ -156,7 +156,7 @@ suite('utils Suite:', () => {
             assert.deepEqual(opts.versionPropertyType, helpers.defaultVersionPropertyType);
         });
 
-        test('Should using string version property type when string type is specified', () => {
+        test('Should use string version property type when string type is specified', () => {
             opts.versionPropertyType = 'string';
             utils.validateVersionPropertyType(opts);
             assert.deepEqual(opts.versionPropertyType, helpers.stringVersionPropertyType);
@@ -223,7 +223,7 @@ suite('utils Suite:', () => {
             assert.deepEqual(validatedOpts.versionPropertyType, helpers.defaultVersionPropertyType);
         });
 
-        test('Should return opts object with default values and specified release type', () => {
+        test('Should return opts object with default values and specified version property type', () => {
             const versionPropertyType = 'string';
             opts.versionPropertyType = versionPropertyType;
             validatedOpts = utils.validateOptions(opts);
