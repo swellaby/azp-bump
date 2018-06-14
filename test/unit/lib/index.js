@@ -10,9 +10,9 @@ suite('index Suite:', () => {
         });
     });
 
-    suite('bumpTaskManifestVersions Suite:', () => {
+    suite('bumpTaskManifests Suite:', () => {
         test('Should throw not implemented error', () => {
-            assert.throws(() => index.bumpTaskManifestVersions(), 'Not yet implemented');
+            assert.throws(() => index.bumpTaskManifests(), 'Not yet implemented');
         });
     });
 });

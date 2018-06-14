@@ -18,11 +18,11 @@ suite('bin/vsts-bump Suite:', () => {
         indent: 4
     };
     let commanderOptsStub;
-    let indexBumpTaskManifestVersionsStub;
+    let indexBumpTaskManifestsStub;
     let cli;
 
     setup(() => {
-        indexBumpTaskManifestVersionsStub = sandbox.stub(index, 'bumpTaskManifestVersions');
+        indexBumpTaskManifestsStub = sandbox.stub(index, 'bumpTaskManifests');
         commander.opts = () => null;
         commanderOptsStub = sinon.stub(commander, 'opts').callsFake(() => opts);
         commander.args = args;
@@ -63,6 +63,6 @@ suite('bin/vsts-bump Suite:', () => {
     test('Should pass correct parameters to bumpWrite', () => {
         cli.bump();
         assert.isTrue(commanderOptsStub.called);
-        assert.isTrue(indexBumpTaskManifestVersionsStub.calledWith(args, opts));
+        assert.isTrue(indexBumpTaskManifestsStub.calledWith(args, opts));
     });
 });

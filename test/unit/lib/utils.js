@@ -10,17 +10,16 @@ const utils = require('../../../lib/utils');
 const assert = Chai.assert;
 
 suite('utils Suite:', () => {
-    const sandbox = Sinon.createSandbox();
     let opts;
     let semverIncStub;
 
     setup(() => {
         opts = {};
-        semverIncStub = sandbox.stub(semver, 'inc').callsFake(() => helpers.bumpedVersion);
+        semverIncStub = Sinon.stub(semver, 'inc').callsFake(() => helpers.bumpedVersion);
     });
 
     teardown(() => {
-        sandbox.restore();
+        Sinon.restore();
         opts = null;
     });
 
@@ -56,7 +55,6 @@ suite('utils Suite:', () => {
         });
     });
 
-    /* eslint-disable-next-line max-statements */
     suite('validateJsonIndent Suite:', () => {
         test('Should set json indent to default if no type is specified', () => {
             utils.validateJsonIndent(opts);
@@ -243,7 +241,6 @@ suite('utils Suite:', () => {
         });
     });
 
-    /* eslint-disable-next-line max-statements */
     suite('bumpVersion Suite:', () => {
         let semverMajorStub;
         let semverMinorStub;
@@ -256,9 +253,9 @@ suite('utils Suite:', () => {
 
         setup(() => {
             taskJson = helpers.createSampleTaskContents(helpers.majorVersionStr, helpers.minorVersionStr, helpers.patchVersionStr);
-            semverMajorStub = sandbox.stub(semver, 'major').callsFake(() => helpers.majorVersion);
-            semverMinorStub = sandbox.stub(semver, 'minor').callsFake(() => helpers.minorVersion);
-            semverPatchStub = sandbox.stub(semver, 'patch').callsFake(() => helpers.patchVersion);
+            semverMajorStub = Sinon.stub(semver, 'major').callsFake(() => helpers.majorVersion);
+            semverMinorStub = Sinon.stub(semver, 'minor').callsFake(() => helpers.minorVersion);
+            semverPatchStub = Sinon.stub(semver, 'patch').callsFake(() => helpers.patchVersion);
         });
 
         teardown(() => {
