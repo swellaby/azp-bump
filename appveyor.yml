@@ -13,11 +13,11 @@ matrix:
   fast_finish: true
 
 cache:
-  - node_modules -> package-lock.json
+  - '%AppData%/npm-cache' -> package-lock.json
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - npm install
+  - npm ci
 
 test_script:
   - npm run build
