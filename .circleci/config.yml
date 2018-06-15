@@ -19,7 +19,7 @@ jobs:
           keys:
           - sonar-cache
 
-      - run: npm ci
+      - run: npm install
       - run: sudo npm i -g sonarqube-scanner coveralls
       - run:
           name: Set Environment Variables
@@ -29,7 +29,7 @@ jobs:
 
       - save_cache:
           paths:
-            - ~/.npm
+            - node_modules
           key: v0-dependencies-{{ checksum "package-lock.json" }}
         
       - run: 
