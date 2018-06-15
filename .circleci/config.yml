@@ -30,6 +30,8 @@ jobs:
       - save_cache:
           paths:
             - node_modules
+            - ~/.npm
+            - $(npm config get prefix)
           key: v0-dependencies-{{ checksum "package-lock.json" }}
         
       - run: 
