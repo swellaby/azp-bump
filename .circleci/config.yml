@@ -31,7 +31,6 @@ jobs:
           paths:
             - node_modules
             - ~/.npm
-            - $(npm config get prefix)
           key: v0-dependencies-{{ checksum "package-lock.json" }}
         
       - run: 
@@ -51,7 +50,10 @@ jobs:
           paths:
             - ~/.sonar
           key: sonar-cache
-
+    
+      - run:
+          name: Push coverage to Codecov
+          command: bash <(curl -s https://codecov.io/bash) || true
       - run:
           name: coveralls
           command: coveralls < .coverage/unit/lcov.info
