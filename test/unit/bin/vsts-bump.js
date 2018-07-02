@@ -18,11 +18,14 @@ suite('bin/vsts-bump Suite:', () => {
         indent: 4
     };
     let commanderOptsStub;
-    let indexBumpTaskManifestsStub;
+    let indexBumpTaskManifestFilesStub;
     let cli;
+    let processExitStub;
 
     setup(() => {
-        indexBumpTaskManifestsStub = sandbox.stub(index, 'bumpTaskManifests');
+        processExitStub = sandbox.stub(process, 'exit');
+        indexBumpTaskManifestFilesStub = sandbox.stub(index, 'bumpTaskManifestFiles');
+        indexBumpTaskManifestFilesStub.callsFake(() => Promise.resolve({ succeeded: true }));
         commander.opts = () => null;
         commanderOptsStub = sinon.stub(commander, 'opts').callsFake(() => opts);
         commander.args = args;
@@ -48,7 +51,8 @@ suite('bin/vsts-bump Suite:', () => {
         });
 
         test('Should correctly set type option', () => {
-            assert.isTrue(commanderOptionSpy.calledWith('-t, --type [type]', 'the bump version type'));
+            const typeRegex = /^(patch|minor|major)$/i;
+            assert.isTrue(commanderOptionSpy.calledWith('-t, --type [type]', 'the bump version type', typeRegex));
         });
 
         test('Should correctly set indent option', () => {
@@ -60,9 +64,9 @@ suite('bin/vsts-bump Suite:', () => {
         });
     });
 
-    test('Should pass correct parameters to bumpWrite', () => {
+    test('Should pass correct parameters to bumpTaskManifestFiles', () => {
         cli.bump();
         assert.isTrue(commanderOptsStub.called);
-        assert.isTrue(indexBumpTaskManifestsStub.calledWith(args, opts));
+        assert.isTrue(indexBumpTaskManifestFilesStub.calledWith(args, opts));
     });
 });

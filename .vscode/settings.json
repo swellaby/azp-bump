@@ -1,7 +1,7 @@
 {
     "files.exclude": {
         "npm-debug.log": true,
-        ".testresults": false,
+        ".testresults": true,
         ".coverage": true,
         "node_modules": true,        
         ".nyc_output": true,

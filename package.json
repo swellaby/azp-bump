@@ -1,6 +1,6 @@
 {
   "name": "vsts-bump",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "description": "Lib/CLI for bumping the version of VSTS task files",
   "license": "MIT",
   "main": "lib/index.js",
@@ -18,11 +18,8 @@
     }
   ],
   "scripts": {
-    "build": "npm run lint && npm run test",
+    "build": "npm run lint && npm run test:unit",
     "clean": "rimraf .testresults .coverage",
-    "clean:unit": "rimraf .testresults/unit .coverage/unit",
-    "clean:component": "rimraf .testresults/component .coverage/component",
-    "clean:functional": "rimraf .testresults/functional .coverage/functional",
     "coverage": "nyc --report-dir .coverage/unit --check-coverage false npm run test:unit",
     "coverage:enforce": "nyc --report-dir .coverage/unit npm run test:unit",
     "coverage:open": "npm run coverage && opn .coverage/unit/index.html",
@@ -30,23 +27,31 @@
     "test": "npm run test:unit",
     "test:all": "npm run test:unit && npm run test:component && npm run test:functional",
     "test:unit": "mocha --opts test/unit/mocha.opts",
-    "pretest:unit": "npm run clean:unit",
+    "pretest:unit": "rimraf .testresults/unit .coverage/unit",
     "test:component": "mocha --opts test/component/mocha.opts",
-    "pretest:component": "npm run clean:component",
+    "pretest:component": "rimraf .testresults/component .coverage/component",
     "test:functional": "mocha --opts test/functional/mocha.opts",
-    "pretest:functional": "npm run clean:functional",
+    "pretest:functional": "rimraf .testresults/functional .coverage/functional",
     "version:tagless": "npm --no-git-tag-version version patch",
     "prepublish:local": "npm run build && npm run version:tagless",
     "publish:local": "npm publish --access public",
     "dev:reset": "npm run clean && node -e \"require('rimraf').sync('node_modules');\" && npm run dev:setup",
-    "dev:setup": "npm install && npm run build"
+    "dev:setup": "npm install && npm run build",
+    "cc": "cd .. && vsts-bump c:/dev/yoswelltest/0.20.5/vsts2/tasks/**/task.json"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/swellaby/vsts-bump.git"
   },
   "keywords": [
-    "VSTS"
+    "VSTS",
+    "vsts",
+    "vsts-bump",
+    "vsts bump",
+    "vsts-task",
+    "vsts task",
+    "vsts task bump",
+    "vsts-task-bump"
   ],
   "bugs": {
     "url": "https://github.com/swellaby/vsts-bump/issues"
@@ -56,7 +61,7 @@
     "@swellaby/eslint-config": "^1.1.6",
     "@swellaby/nyc-config": "^1.0.12",
     "chai": "^4.1.2",
-    "eslint": "^5.0.0",
+    "eslint": "^5.0.1",
     "husky": "^1.0.0-rc.4",
     "mocha": "^5.2.0",
     "mocha-multi-reporters": "^1.1.7",
@@ -67,7 +72,8 @@
     "sinon": "^6.0.1"
   },
   "dependencies": {
-    "commander": "^2.15.1",
+    "chalk": "^2.4.1",
+    "commander": "^2.16.0",
     "glob": "^7.1.2",
     "semver": "^5.5.0"
   }

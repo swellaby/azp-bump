@@ -66,11 +66,10 @@ const newVersionMessage = ' to ' + chalk.magenta(bumpedVersion);
 const bumpTypeMessage = ' with type: ' + chalk.blue(defaultReleaseType);
 const logMessage = initialVersionMessage + newVersionMessage + bumpTypeMessage;
 
-const streamDataEventName = 'data';
-const streamErrorEventName = 'error';
+const globEndEventName = 'end';
+const globErrorEventName = 'error';
 
 module.exports = {
-    pluginName: 'gulp-vsts-bump',
     patchReleaseType: patchReleaseType,
     minorReleaseType: minorReleaseType,
     majorReleaseType: majorReleaseType,
@@ -100,12 +99,13 @@ module.exports = {
     validSampleOneNumericVersionTaskContents: validSampleOneNumericVersionTaskContents,
     invalidSampleOneTaskContents: invalidSampleOneTaskContents,
     expectedLogMessage: logMessage,
-    streamDataEventName: streamDataEventName,
-    streamErrorEventName: streamErrorEventName,
+    globEndEventName: globEndEventName,
+    globErrorEventName: globErrorEventName,
     defaultJsonIndent: defaultJsonIndent,
     stringVersionPropertyType: stringVersionPropertyType,
     numberVersionPropertyType: numberVersionPropertyType,
     defaultVersionPropertyType: defaultVersionPropertyType,
     defaultOptions: defaultOptions,
-    validSampleOneNumericBumpedVersionTaskContents: validSampleOneNumericBumpedVersionTaskContents
+    validSampleOneNumericBumpedVersionTaskContents: validSampleOneNumericBumpedVersionTaskContents,
+    noErrorMessagePropertyDefaultMessage: 'unknown'
 };
