@@ -1,6 +1,6 @@
 {
   "name": "vsts-bump",
-  "version": "0.0.14",
+  "version": "0.1.0",
   "description": "Lib/CLI for bumping the version of VSTS task files",
   "license": "MIT",
   "main": "lib/index.js",
@@ -36,8 +36,7 @@
     "prepublish:local": "npm run build && npm run version:tagless",
     "publish:local": "npm publish --access public",
     "dev:reset": "npm run clean && node -e \"require('rimraf').sync('node_modules');\" && npm run dev:setup",
-    "dev:setup": "npm install && npm run build",
-    "cc": "cd .. && vsts-bump c:/dev/yoswelltest/0.20.5/vsts2/tasks/**/task.json"
+    "dev:setup": "npm install && npm run build"
   },
   "repository": {
     "type": "git",
