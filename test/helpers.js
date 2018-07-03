@@ -58,16 +58,37 @@ const buildTaskFile = ((fileContents) => {
     };
 });
 
+const buildBumpedFileResultMessage = (oldVersion, newVersion, file) => {
+    return `Bumped ${chalk.blue(oldVersion)} to ${chalk.magenta(newVersion)} in ${file}`;
+};
+
+const buildBumpSummaryMessage = (numBumpedFiles, bumpType) => {
+    return `Bumped ${chalk.blue(numBumpedFiles)} task manifests using bump type ${chalk.blue(bumpType)}`;
+};
+
 const initialVersion = major + '.' + minor + '.' + patch;
 const bumpedVersion = major + '.' + minor + '.' + (patch + 1);
 
-const initialVersionMessage = 'Bumped ' + chalk.blue(initialVersion);
-const newVersionMessage = ' to ' + chalk.magenta(bumpedVersion);
-const bumpTypeMessage = ' with type: ' + chalk.blue(defaultReleaseType);
-const logMessage = initialVersionMessage + newVersionMessage + bumpTypeMessage;
-
 const globEndEventName = 'end';
 const globErrorEventName = 'error';
+
+const sampleGlob = 'tasks/**/task.json';
+const taskOneFilePath = 'tasks/one/task.json';
+const taskTwoFilePath = 'tasks/two/task.json';
+const taskFilePaths = [ taskOneFilePath, taskTwoFilePath ];
+const singleGlobArgs = [ sampleGlob ];
+
+const buildBumpedFileResult = (bumpedVersion, initialVersion, filePath) => {
+    return { bumpedVersion, initialVersion, filePath };
+};
+
+const taskOneBumpFileResult = buildBumpedFileResult(bumpedVersion, initialVersion, taskOneFilePath);
+const taskTwoBumpFileResult = buildBumpedFileResult(bumpedVersion, initialVersion, taskTwoFilePath);
+const bumpedFileResults = [ taskOneBumpFileResult, taskTwoBumpFileResult ];
+const bumpResult = { bumpedFiles: bumpedFileResults, bumpType: defaultReleaseType };
+
+const taskOneBumpedMessage = buildBumpedFileResultMessage(taskOneBumpFileResult.initialVersion, taskOneBumpFileResult.bumpedVersion, taskOneBumpFileResult.filePath);
+const taskTwoBumpedMessage = buildBumpedFileResultMessage(taskTwoBumpFileResult.initialVersion, taskTwoBumpFileResult.bumpedVersion, taskTwoBumpFileResult.filePath);
 
 module.exports = {
     patchReleaseType: patchReleaseType,
@@ -98,7 +119,6 @@ module.exports = {
     validSampleOneTaskContents: validSampleOneTaskContents,
     validSampleOneNumericVersionTaskContents: validSampleOneNumericVersionTaskContents,
     invalidSampleOneTaskContents: invalidSampleOneTaskContents,
-    expectedLogMessage: logMessage,
     globEndEventName: globEndEventName,
     globErrorEventName: globErrorEventName,
     defaultJsonIndent: defaultJsonIndent,
@@ -107,5 +127,17 @@ module.exports = {
     defaultVersionPropertyType: defaultVersionPropertyType,
     defaultOptions: defaultOptions,
     validSampleOneNumericBumpedVersionTaskContents: validSampleOneNumericBumpedVersionTaskContents,
-    noErrorMessagePropertyDefaultMessage: 'unknown'
+    noErrorMessagePropertyDefaultMessage: 'unknown',
+    buildBumpSummaryMessage: buildBumpSummaryMessage,
+    defaultBumpSummaryMessage: buildBumpSummaryMessage(bumpedFileResults.length, defaultReleaseType),
+    buildBumpedFileResultMessage: buildBumpedFileResultMessage,
+    taskOneBumpedMessage: taskOneBumpedMessage,
+    taskTwoBumpedMessage: taskTwoBumpedMessage,
+    sampleGlob: sampleGlob,
+    taskOneFilePath: taskOneFilePath,
+    taskTwoFilePath: taskTwoFilePath,
+    taskFilePaths: taskFilePaths,
+    singleGlobArgs: singleGlobArgs,
+    bumpedFileResults: bumpedFileResults,
+    bumpResult: bumpResult
 };

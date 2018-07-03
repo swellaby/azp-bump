@@ -234,10 +234,46 @@ suite('utils Suite:', () => {
     });
 
     suite('getTaskVersion Suite:', () => {
+        const invalidTaskErrorMessage = 'Invalid task. Task must represent version as an object under the \'version\' key' +
+                'with Major, Minor, and Patch fields (that start uppercase letters)';
+
         test('Should return correct task version string', () => {
             const taskJson = helpers.createSampleTaskContents(helpers.majorVersionStr, helpers.minorVersionStr, helpers.patchVersionStr);
             const version = utils.getTaskVersion(taskJson);
             assert.deepEqual(version, helpers.initialVersion);
+        });
+
+        test('Should throw an error when task is null', () => {
+            assert.throws(() => utils.getTaskVersion(null));
+        });
+
+        test('Should throw an error when task is undefined', () => {
+            assert.throws(() => utils.getTaskVersion(null));
+        });
+
+        test('Should throw an error when task is missing version key', () => {
+            assert.throws(() => utils.getTaskVersion({}));
+        });
+
+        test('Should throw correct error when task version object is missing a key', () => {
+            const badTask = {
+                version: {
+                    Major: 0,
+                    Minor: 1
+                }
+            };
+            assert.throws(() => utils.getTaskVersion(badTask), invalidTaskErrorMessage);
+        });
+
+        test('Should throw correct error when task version object has wrong case key', () => {
+            const badTask = {
+                version: {
+                    Major: 0,
+                    Minor: 1,
+                    patch: 2
+                }
+            };
+            assert.throws(() => utils.getTaskVersion(badTask), invalidTaskErrorMessage);
         });
     });
 
