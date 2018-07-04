@@ -39,15 +39,6 @@
             ]
         },
         {
-            "taskName": "component test",
-            "suppressTaskName": true,
-            "args": [
-                "npm",
-                "run",
-                "test:component"
-            ]
-        },
-        {
             "taskName": "enforce unit coverage",
             "suppressTaskName": true,
             "args": [
@@ -63,6 +54,15 @@
                 "npm",
                 "run",
                 "coverage:open"
+            ]
+        },
+        {
+            "taskName": "component test",
+            "suppressTaskName": true,
+            "args": [
+                "npm",
+                "run",
+                "test:component"
             ]
         }
     ]

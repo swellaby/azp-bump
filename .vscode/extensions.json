@@ -1,9 +1,11 @@
 {
     "recommendations": [
         "christian-kohler.npm-intellisense",
+        "christian-kohler.path-intellisense",
         "wix.vscode-import-cost",
         "dbaeumer.vscode-eslint",
         "pflannery.vscode-versionlens",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "EditorConfig.EditorConfig"
     ],
 }
