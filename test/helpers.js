@@ -63,7 +63,7 @@ const buildBumpedFileResultMessage = (oldVersion, newVersion, file) => {
 };
 
 const buildBumpSummaryMessage = (numBumpedFiles, bumpType) => {
-    return `Bumped ${chalk.blue(numBumpedFiles)} task manifests using bump type ${chalk.blue(bumpType)}`;
+    return `Bumped ${chalk.blue(numBumpedFiles)} task manifest file(s) using bump type ${chalk.blue(bumpType)}`;
 };
 
 const initialVersion = major + '.' + minor + '.' + patch;

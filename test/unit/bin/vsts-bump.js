@@ -59,21 +59,21 @@ suite('bin/vsts-bump Suite:', () => {
 
         test('Should correctly set type option', () => {
             const typeRegex = /^(patch|minor|major)$/i;
-            assert.isTrue(commanderOptionSpy.calledWith('-t, --type [type]', 'the bump version type', typeRegex));
+            assert.isTrue(commanderOptionSpy.calledWithExactly('-t, --type [type]', 'the bump version type', typeRegex, 'patch'));
         });
 
         test('Should correctly set indent option', () => {
-            assert.isTrue(commanderOptionSpy.calledWith('-i, --indent [indent]', 'the indent to use'));
+            assert.isTrue(commanderOptionSpy.calledWithExactly('-i, --indent [indent]', 'the indent to use', cli.parseIndent));
         });
 
         test('Should correctly set quiet option', () => {
-            assert.isTrue(commanderOptionSpy.calledWith('-q, --quiet', 'controls suppression of the log output'));
+            assert.isTrue(commanderOptionSpy.calledWithExactly('-q, --quiet', 'controls suppression of the log output'));
         });
 
         test('Should correctly set verison property type option', () => {
             const typeRegex = /^(string|number)$/i;
             const description = 'controls the property type of the version fields';
-            assert.isTrue(commanderOptionSpy.calledWith('-v, --version-property-type [versionPropertyType]', description, typeRegex));
+            assert.isTrue(commanderOptionSpy.calledWithExactly('-p, --version-property-type [versionPropertyType]', description, typeRegex, 'number'));
         });
 
         test('Should call parse with process.argv', () => {
@@ -126,6 +126,30 @@ suite('bin/vsts-bump Suite:', () => {
                 assert.isTrue(processExitStub.calledWith(0));
                 done();
             }).catch(err => done(err));
+        });
+    });
+
+    suite('parseIndent Suite:', () => {
+        const tabCharacter = '\t';
+
+        test('Should return tab character when specified indent is t', () => {
+            assert.deepEqual(cli.parseIndent('t'), tabCharacter);
+        });
+
+        test('Should return tab character when specified indent is tab', () => {
+            assert.deepEqual(cli.parseIndent('tab'), tabCharacter);
+        });
+
+        test('Should return tab character when specified indent is tab character', () => {
+            assert.deepEqual(cli.parseIndent(tabCharacter), tabCharacter);
+        });
+
+        test('Should return number when specified indent is one as a string', () => {
+            assert.deepEqual(cli.parseIndent('1'), 1);
+        });
+
+        test('Should return number when specified indent is ten as a string', () => {
+            assert.deepEqual(cli.parseIndent('10'), 10);
         });
     });
 });

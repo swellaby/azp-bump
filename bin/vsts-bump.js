@@ -12,17 +12,35 @@ const typeRegex = /^(patch|minor|major)$/i;
 const versionPropertyTypeRegex = /^(string|number)$/i;
 const versionPropertyTypeDescription = 'controls the property type of the version fields';
 
+/**
+ * Helper function used for parsing CLI indent option.
+ * @private
+ * @param {string} indent - The indent specified
+ */
+const parseIndent = indent => {
+    if (indent === 't' || indent === 'tab' || indent === '\t') {
+        return '\t';
+    }
+
+    return parseInt(indent);
+};
+
 program
     .version(packageJson.version)
     .usage('<files> [options...]')
-    .option('-t, --type [type]', 'the bump version type', typeRegex)
-    .option('-i, --indent [indent]', 'the indent to use')
+    .option('-t, --type [type]', 'the bump version type', typeRegex, 'patch')
+    .option('-i, --indent [indent]', 'the indent to use', parseIndent)
     .option('-q, --quiet', 'controls suppression of the log output')
-    .option('-v, --version-property-type [versionPropertyType]', versionPropertyTypeDescription, versionPropertyTypeRegex)
+    .option('-p, --version-property-type [versionPropertyType]', versionPropertyTypeDescription, versionPropertyTypeRegex, 'number')
     .parse(process.argv);
 
+/**
+ * Helper function for logging the bump result.
+ * @param {Object} result
+ * @private
+ */
 const logResult = (result) => {
-    log.info(`Bumped ${chalk.blue(result.bumpedFiles.length)} task manifests using bump type ${chalk.blue(result.bumpType)}`);
+    log.info(`Bumped ${chalk.blue(result.bumpedFiles.length)} task manifest file(s) using bump type ${chalk.blue(result.bumpType)}`);
     result.bumpedFiles.forEach(bumpedFile => {
         const oldVersion = bumpedFile.initialVersion;
         const newVersion = bumpedFile.bumpedVersion;
@@ -31,6 +49,10 @@ const logResult = (result) => {
     });
 };
 
+/**
+ * Main bump functionality
+ * @private
+ */
 const bump = () => {
     const opts = program.opts();
     return index.bumpTaskManifestFiles(program.args, opts).then(result => {
@@ -47,5 +69,6 @@ const bump = () => {
 bump();
 
 module.exports = {
-    bump: bump
+    bump: bump,
+    parseIndent: parseIndent
 };
