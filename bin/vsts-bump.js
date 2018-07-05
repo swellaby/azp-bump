@@ -11,7 +11,7 @@ const packageJson = require('../package.json');
 const typeDescription = 'The bump version type. Allowed values: major, minor, or patch.';
 const typeRegex = /^(patch|minor|major)$/i;
 const indentDescription = 'The spacing indent to use while updating the task manifests. Specifying a number will use that many spaces, ' +
-    'or a string to use a tab character. Allowed values: 1-10 (inclusive) OR t, tab, or \'\t\'.';
+    'or a string to use a tab character. Allowed values: 1-10 (inclusive) OR t, tab, or \'\\t\'.';
 const versionPropertyTypeRegex = /^(string|number)$/i;
 const versionPropertyTypeDescription = 'Controls the property type of the version fields. Allowed values: string, number.';
 

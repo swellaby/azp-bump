@@ -65,7 +65,7 @@ suite('bin/vsts-bump Suite:', () => {
 
         test('Should correctly set indent option', () => {
             const indentDescription = 'The spacing indent to use while updating the task manifests. Specifying a number will use that many spaces, ' +
-                'or a string to use a tab character. Allowed values: 1-10 (inclusive) OR t, tab, or \'\t\'.';
+                'or a string to use a tab character. Allowed values: 1-10 (inclusive) OR t, tab, or \'\\t\'.';
             assert.isTrue(commanderOptionSpy.calledWithExactly('-i, --indent [indent]', indentDescription, cli.parseIndent, 2));
         });
 

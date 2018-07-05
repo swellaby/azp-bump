@@ -16,10 +16,10 @@ While versions are typically tracked as a string (i.e. `version: "1.2.3"`) in mo
 ```json
 { 
     ...
-    version: {
-        Major: 1,
-        Minor: "3",
-        Patch: 0 
+    "version": {
+        "Major": 1,
+        "Minor": "3",
+        "Patch": 0 
     },
     ...
 }
@@ -35,10 +35,11 @@ npm i vsts-bump
 ```
 
 ## Usage
-Basic usage for the CLI:  
+Basic usage for the CLI follows the pattern `vsts-bump <fileGlobs> [options..]`. For example:  
 ```sh
 vsts-bump tasks/**/task.json
 ```
+See the [Arguments section][cli-arguments-section] and the [Options section][cli-options-section] for more detailed info.
 
 Basic usage for the core API function:
 ```js
@@ -68,21 +69,73 @@ We typically recommand installing `vsts-bump` as a dev dependency in your repos/
     ]
 }
 ```
-### Arguments
-- `file globs`
-
-The only required argument is a file path or [glob][glob-primer-url] that points to the task manifest file(s) you want to bump. For example: `vsts-bump src/**/task.json`. You can pass more than one file path/glob if needed:
+### CLI Arguments
+The only required argument is at least one file path or [file glob][glob-primer-url] that points to the task manifest file(s) you want to bump. Note that you can pass more than one file path/glob if needed. Some examples:
 
 ```sh
+vsts-bump src/**/task.json
 vsts-bump src/**/task.json task/**/task.json
 ```
 
-### Options
-* `-t`, `--type`
-    Use this to specify the bump type to use. Options are: `major`,  `minor`, or `patch`. The default value is `patch` If the option is not supplied, or is supplied with an invalid value then the default will be used.  
+### CLI Options
+There are several options supported by the CLI that allow you to control certain bump settings. All of the options can be used together if desired, none of the options are required.  
+
+* `-t`, `--type` - Controls the bump type used. 
+
+    Options are: `major`,  `minor`, or `patch`. The default value is `patch`. If the option is not supplied, or is supplied with an invalid value, then the default will be used.  
+
     Example usage:
     ```sh
     vsts-bump -t minor tasks/**/task.json
+    vsts-bump --type major tasks/**/task.json
+    ```  
+* `-i`, `--indent` - Controls the type of spacing indent used when updating the task manifests.  
+
+    Options are: the numbers `1-10` (inclusive), or `t`, `tab`, `\t`. The default value is `2`. Specifying the option with a number will result in using that number of space characters. Specifying one of the tab related strings will result in a tab character being used for spacing. If the option is not supplied, or is supplied with an invalid value, then the default will be used.  
+
+    Example usage:
+    ```sh
+    vsts-bump -i 4 tasks/**/task.json
+    vsts-bump -i tab tasks/**/task.json
+    vsts-bump --indent 8 tasks/**/task.json
+    ```
+
+* `-q`, `--quiet` - Add this flag to perform the bump quietly (suppress log output).  
+
+    Example usage:
+    ```sh
+    vsts-bump -q tasks/**/task.json
+    vsts-bump --quiet tasks/**/task.json
+    ```
+
+* `-p`, `--version-property-type` - Controls which property type to use for the version properties in the task manifests.  
+
+    Options are: `string` or `number`. The default value is `number`. Specifying the option `string` will result in the `Major`, `Minor`, and `Patch` values being set to strings in the updated task manifest files. For example: 
+    ```json
+    { 
+        "version": {
+            "Major": "1",
+            "Minor": "2",
+            "Patch": "3" 
+        },
+    }
+    ``` 
+    Specifying `number` will result in those values being set to numbers. For example:
+    ```json
+    { 
+        "version": {
+            "Major": 1,
+            "Minor": 2,
+            "Patch": 3 
+        },
+    }
+    ``` 
+    If the option is not supplied, or is supplied with an invalid value, then the default will be used.  
+     
+    Example usage:
+    ```sh
+    vsts-bump -p string tasks/**/task.json
+    vsts-bump --version-property-type string tasks/**/task.json
     ```
 
 ## API
@@ -107,3 +160,5 @@ vsts-bump src/**/task.json task/**/task.json
 [sonar-url]: https://sonarcloud.io/dashboard?id=swellaby%3Avsts-bump
 [gulp-vsts-bump-url]: https://www.npmjs.com/package/gulp-vsts-bump
 [glob-primer-url]: https://github.com/isaacs/node-glob#glob-primer
+[cli-arguments-section]: #cli-arguments
+[cli-options-section]: #cli-options
