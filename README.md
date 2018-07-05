@@ -131,7 +131,7 @@ There are several options supported by the CLI that allow you to control certain
     }
     ``` 
     If the option is not supplied, or is supplied with an invalid value, then the default will be used.  
-     
+
     Example usage:
     ```sh
     vsts-bump -p string tasks/**/task.json
@@ -139,10 +139,34 @@ There are several options supported by the CLI that allow you to control certain
     ```
 
 ## API
+The `vsts-bump` API provides functions for bumping task manifest files (similar to the CLI), as well as for bumping VSTS Task Objects. `vsts-bump` ships with its corresponding TypeScript declaration file so the API can be easily consumed from both JavaScript and TypeScript codebases.
+
+API Functions:
+- [bumpTaskManifestFiles][bump-task-manifest-files-function-section]
+- [bumpTask][bump-task-function-section]
+- [bumpTasks][bump-tasks-function-section]
+
+### bumpTaskManifestFiles
+
+#### bumpTaskManifestFiles Options
+
+### bumpTask
+
+### bumpTasks
 
 ## Contributing
+All contributions are welcome!  
+
+Need to open an issue? Click the below links to create one:
+
+- [Report a bug][create-bug-url]
+- [Request an enhancement][create-enhancement-url]
+- [Ask a question][create-question-url]
+
+See the [Guidelines][contrib-dev-url] for more info about building and developing.
 
 ## License
+MIT - see license details [here][license-url] 
 
 [npm-version-badge]: https://img.shields.io/npm/v/vsts-bump.svg
 [npm-downloads-badge]: https://img.shields.io/npm/dt/vsts-bump.svg
@@ -162,3 +186,10 @@ There are several options supported by the CLI that allow you to control certain
 [glob-primer-url]: https://github.com/isaacs/node-glob#glob-primer
 [cli-arguments-section]: #cli-arguments
 [cli-options-section]: #cli-options
+[bump-task-manifest-files-function-section]: #bumptaskmanifestfiles
+[bump-task-function-section]: #bumptask
+[bump-tasks-function-section]: #bumptasks
+[create-bug-url]: https://github.com/swellaby/vsts-bump/issues/new?template=BUG_TEMPLATE.md&labels=bug,unreviewed&title=Bug:%20
+[create-question-url]: https://github.com/swellaby/vsts-bump/issues/new?template=QUESTION_TEMPLATE.md&labels=question,unreviewed&title=Q:%20
+[create-enhancement-url]: https://github.com/swellaby/vsts-bump/issues/new?template=ENHANCEMENT_TEMPLATE.md&labels=enhancement,unreviewed&title=E:%20
+[contrib-dev-url]: ./.github/CONTRIBUTING.md#developing
