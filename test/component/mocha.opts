@@ -1,5 +1,5 @@
 --ui tdd
---timeout 400
+--timeout 650
 -R mocha-multi-reporters
 --reporter-options configFile=test/component/mocha-reporter-config.json
 --recursive
