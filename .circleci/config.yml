@@ -35,7 +35,8 @@ jobs:
         
       - run: 
           name: build
-          command: npm run lint && npm run coverage
+          command: npm run build
+
       - store_artifacts:
           path: .coverage/unit/
           prefix: coverage
@@ -54,6 +55,3 @@ jobs:
       - run:
           name: Push coverage to Codecov
           command: bash <(curl -s https://codecov.io/bash) || true
-      - run:
-          name: coveralls
-          command: coveralls < .coverage/unit/lcov.info
