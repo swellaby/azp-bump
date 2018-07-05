@@ -9,10 +9,12 @@ npm-debug*
 .github/
 .vscode/
 test/
-appveyor.yml
 .appveyor.yml
+.editorconfig
 .eslintignore
 .eslintrc.js
 .huskyrc.json
 .nycrc.json
+.renovate.json
+renovate.json
 sonar-project.properties

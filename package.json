@@ -1,10 +1,11 @@
 {
   "name": "vsts-bump",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Lib/CLI for bumping the version of VSTS task files",
   "license": "MIT",
   "main": "lib/index.js",
   "bin": "bin/vsts-bump.js",
+  "types": "lib/index.d.ts",
   "author": {
     "email": "opensource@swellaby.com",
     "name": "Swellaby",

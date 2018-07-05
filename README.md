@@ -1,5 +1,5 @@
 # vsts-bump
-Library/CLI for bumping VSTS Task files.
+Library/CLI for bumping VSTS Task files. (Functional but still in Beta/Preview)
 
 [![npm Version Badge][npm-version-badge]][npm-package-url]
 [![npm Downloads Badge][npm-downloads-badge]][npm-package-url]
@@ -11,9 +11,19 @@ Library/CLI for bumping VSTS Task files.
 [![Codecov Badge][codecov-badge]][codecov-url]
 [![Sonar Quality Gate Badge][sonar-quality-gate-badge]][sonar-url]
 
+## About
+
+## Install
+
+## Usage
+
 ## CLI
 
 ## API
+
+## Contributing
+
+## License
 
 [npm-version-badge]: https://img.shields.io/npm/v/vsts-bump.svg
 [npm-downloads-badge]: https://img.shields.io/npm/dt/vsts-bump.svg
