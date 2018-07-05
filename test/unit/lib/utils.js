@@ -235,7 +235,7 @@ suite('utils Suite:', () => {
 
     suite('getTaskVersion Suite:', () => {
         const invalidTaskErrorMessage = 'Encountered one or more invalid tasks. Task must represent version as an object under the \'version\' key ' +
-                'with Major, Minor, and Patch fields (that start with Uppercase letters)';
+            'with Major, Minor, and Patch fields (that start with Uppercase letters)';
 
         test('Should return correct task version string', () => {
             const taskJson = helpers.createSampleTaskContents(helpers.majorVersionStr, helpers.minorVersionStr, helpers.patchVersionStr);
@@ -256,112 +256,52 @@ suite('utils Suite:', () => {
         });
 
         test('Should throw correct error when task version object is missing a key', () => {
-            const badTask = {
-                version: {
-                    Major: 0,
-                    Minor: 1
-                }
-            };
+            const badTask = helpers.createSampleTaskContents(0, 1);
             assert.throws(() => utils.getTaskVersion(badTask), invalidTaskErrorMessage);
         });
 
         test('Should throw correct error when task version object has wrong case key', () => {
-            const badTask = {
-                version: {
-                    Major: 0,
-                    Minor: 1,
-                    patch: 2
-                }
-            };
+            const badTask = helpers.createSampleTaskContents(0, 1);
+            badTask.version.patch = 2;
             assert.throws(() => utils.getTaskVersion(badTask), invalidTaskErrorMessage);
         });
 
         test('Should throw correct error when task version object has NaN string property', () => {
-            const badTask = {
-                version: {
-                    Major: 0,
-                    Minor: 1,
-                    Patch: 'foobaroo'
-                }
-            };
+            const badTask = helpers.createSampleTaskContents(0, 1, 'foobaroo');
             assert.throws(() => utils.getTaskVersion(badTask), invalidTaskErrorMessage);
         });
 
         test('Should throw correct error when task version object has decimal string property', () => {
-            const badTask = {
-                version: {
-                    Major: '0',
-                    Minor: '1',
-                    Patch: '1.3'
-                }
-            };
+            const badTask = helpers.createSampleTaskContents('0', '1', '1.3');
             assert.throws(() => utils.getTaskVersion(badTask), invalidTaskErrorMessage);
         });
 
         test('Should throw correct error when task version object has empty string property', () => {
-            const badTask = {
-                version: {
-                    Major: '',
-                    Minor: '1',
-                    Patch: '0'
-                }
-            };
+            const badTask = helpers.createSampleTaskContents('', '1', '0');
             assert.throws(() => utils.getTaskVersion(badTask), invalidTaskErrorMessage);
         });
 
         test('Should throw correct error when task version object has decimal numeric property', () => {
-            const badTask = {
-                version: {
-                    Major: 0,
-                    Minor: 1,
-                    Patch: 1.3
-                }
-            };
+            const badTask = helpers.createSampleTaskContents(0, 1, 1.3);
             assert.throws(() => utils.getTaskVersion(badTask), invalidTaskErrorMessage);
         });
 
         test('Should throw correct error when task version object has negative whole number string property', () => {
-            const badTask = {
-                version: {
-                    Major: '0',
-                    Minor: '1',
-                    Patch: '-1'
-                }
-            };
+            const badTask = helpers.createSampleTaskContents('0', '1', '-1');
             assert.throws(() => utils.getTaskVersion(badTask), invalidTaskErrorMessage);
         });
 
         test('Should throw correct error when task version object has negative whole number numeric property', () => {
-            const badTask = {
-                version: {
-                    Major: 0,
-                    Minor: 1,
-                    Patch: -2
-                }
-            };
+            const badTask = helpers.createSampleTaskContents(0, 1, -2);
             assert.throws(() => utils.getTaskVersion(badTask), invalidTaskErrorMessage);
         });
 
         test('Should return correct version when task version object contains numerical zeroes', () => {
-            const task = {
-                version: {
-                    Major: 0,
-                    Minor: 1,
-                    Patch: 0
-                }
-            };
-            assert.deepEqual(utils.getTaskVersion(task), '0.1.0');
+            assert.deepEqual(utils.getTaskVersion(helpers.createSampleTaskContents(0, 1, 0)), '0.1.0');
         });
 
         test('Should return correct version when task version object contains string zeroes', () => {
-            const task = {
-                version: {
-                    Major: '0',
-                    Minor: '1',
-                    Patch: '2'
-                }
-            };
-            assert.deepEqual(utils.getTaskVersion(task), '0.1.2');
+            assert.deepEqual(utils.getTaskVersion(helpers.createSampleTaskContents('0', '1', '2')), '0.1.2');
         });
     });
 

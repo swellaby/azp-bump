@@ -13,6 +13,7 @@ suite('index Suite:', () => {
     let utilsValidateOptionsStub;
     let utilsGetTaskVersionStub;
     let utilsBumpVersionStub;
+    let utilsValidateReleaseTypeStub;
     let globOnEndStub;
     let globOnErrorStub;
     let fsReadFileStub;
@@ -28,11 +29,12 @@ suite('index Suite:', () => {
         utilsValidateOptionsStub = sinon.stub(utils, 'validateOptions').callsFake(() => helpers.defaultOptions);
         utilsGetTaskVersionStub = sinon.stub(utils, 'getTaskVersion').callsFake(() => helpers.initialVersion);
         utilsBumpVersionStub = sinon.stub(utils, 'bumpVersion').callsFake(() => helpers.bumpedVersion);
+        utilsValidateReleaseTypeStub = sinon.stub(utils, 'validateReleaseType');
         const globOnStub = sinon.stub(Glob.prototype, 'on');
         globOnEndStub = globOnStub.withArgs(helpers.globEndEventName);
         globOnErrorStub = globOnStub.withArgs(helpers.globErrorEventName);
         fsReadFileStub = sinon.stub(fs, 'readFile');
-        fsReadFileStub.yields(null, helpers.validTaskFileContents);
+        fsReadFileStub.yields(null, validTaskFileContents);
         fsWriteFileStub = sinon.stub(fs, 'writeFile');
         fsWriteFileStub.yields(null);
         jsonParseStub = sinon.stub(JSON, 'parse').callsFake(() => helpers.validSampleOneTaskContents);
@@ -210,9 +212,67 @@ suite('index Suite:', () => {
         });
     });
 
-    suite('getBumpedTasks Suite:', () => {
-        test('Should throw not implemented error', () => {
-            assert.throws(() => index.getBumpedTasks(), 'Not yet implemented');
+    suite('bumpTask Suite:', () => {
+        const invalidTaskErrorMessage = 'Encountered one or more invalid tasks. Task must represent version as an object under the \'version\' key ' +
+            'with Major, Minor, and Patch fields (that start with Uppercase letters)';
+
+        setup(() => {
+            utilsGetTaskVersionStub.throws(new Error(invalidTaskErrorMessage));
+        });
+
+        test('Should throw error when task is null', () => {
+            assert.throws(() => index.bumpTask(null), invalidTaskErrorMessage);
+        });
+
+        test('Should throw error when task is undefined', () => {
+            assert.throws(() => index.bumpTask(undefined), invalidTaskErrorMessage);
+        });
+
+        test('Should throw error when task is empty', () => {
+            assert.throws(() => index.bumpTask({}), invalidTaskErrorMessage);
+        });
+
+        test('Should succesfuly bump version when task is valid', () => {
+            utilsGetTaskVersionStub.onFirstCall().callsFake(() => helpers.initialVersion);
+            const task = helpers.createSampleTaskContents(0, 1, 2);
+            const opts = { type: helpers.minorReleaseType };
+            index.bumpTask(task, helpers.minorReleaseType);
+            assert.isTrue(utilsValidateReleaseTypeStub.firstCall.calledWith(opts));
+            assert.isTrue(utilsGetTaskVersionStub.firstCall.calledWith(task));
+            assert.isTrue(utilsBumpVersionStub.firstCall.calledWith(task, helpers.initialVersion));
+        });
+    });
+
+    suite('bumpTasks Suite:', () => {
+        const invalidTasksErrorMessage = 'Invalid argument. First parameter must be valid array of tasks.';
+
+        test('Should throw TypeError when tasks are null', () => {
+            assert.throws(() => index.bumpTasks(null), invalidTasksErrorMessage);
+        });
+
+        test('Should throw TypeError when tasks are undefined', () => {
+            assert.throws(() => index.bumpTasks(undefined), invalidTasksErrorMessage);
+        });
+
+        test('Should throw TypeError when single tasks object is provided', () => {
+            assert.throws(() => index.bumpTasks(helpers.createSampleTaskContents(0, 1, 2)), invalidTasksErrorMessage);
+        });
+
+        test('Should not throw TypeError when tasks is empty', () => {
+            assert.doesNotThrow(() => index.bumpTasks([]));
+        });
+
+        test('Should bump task for each provided task', () => {
+            const task1 = helpers.createSampleTaskContents(0, 2, 3);
+            const task2 = helpers.createSampleTaskContents(1, 0, 7);
+            const opts = { type: helpers.minorReleaseType };
+            index.bumpTasks([ task1, task2 ], helpers.minorReleaseType);
+            assert.isTrue(utilsValidateReleaseTypeStub.firstCall.calledWith(opts));
+            assert.isTrue(utilsGetTaskVersionStub.firstCall.calledWith(task1));
+            assert.isTrue(utilsBumpVersionStub.firstCall.calledWith(task1, helpers.initialVersion));
+            assert.isTrue(utilsValidateReleaseTypeStub.secondCall.calledWith(opts));
+            assert.isTrue(utilsGetTaskVersionStub.secondCall.calledWith(task2));
+            assert.isTrue(utilsBumpVersionStub.secondCall.calledWith(task2, helpers.initialVersion));
         });
     });
 });

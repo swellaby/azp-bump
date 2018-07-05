@@ -6,6 +6,7 @@
         "dbaeumer.vscode-eslint",
         "pflannery.vscode-versionlens",
         "eamodio.gitlens",
-        "EditorConfig.EditorConfig"
+        "EditorConfig.EditorConfig",
+        "streetsidesoftware.code-spell-checker"
     ],
 }
