@@ -8,9 +8,12 @@ const program = require('commander');
 const index = require('../lib/index');
 const packageJson = require('../package.json');
 
+const typeDescription = 'The bump version type. Allowed values: major, minor, or patch. Default value is patch';
 const typeRegex = /^(patch|minor|major)$/i;
+const indentDescription = 'The spacing indent to use while updating the task manifests. Specifying a number will use that many spaces, ' +
+    'or a string to use a tab character. Allowed values: 1-10 (inclusive) OR t, tab, or \'\t\'. Default is 2.';
 const versionPropertyTypeRegex = /^(string|number)$/i;
-const versionPropertyTypeDescription = 'controls the property type of the version fields';
+const versionPropertyTypeDescription = 'Controls the property type of the version fields. Allowed values: string, number. Default is number';
 
 /**
  * Helper function used for parsing CLI indent option.
@@ -28,9 +31,9 @@ const parseIndent = indent => {
 program
     .version(packageJson.version)
     .usage('<files> [options...]')
-    .option('-t, --type [type]', 'the bump version type', typeRegex, 'patch')
-    .option('-i, --indent [indent]', 'the indent to use', parseIndent)
-    .option('-q, --quiet', 'controls suppression of the log output')
+    .option('-t, --type [type]', typeDescription, typeRegex, 'patch')
+    .option('-i, --indent [indent]', indentDescription, parseIndent)
+    .option('-q, --quiet', 'Including this flag will disable the log output')
     .option('-p, --version-property-type [versionPropertyType]', versionPropertyTypeDescription, versionPropertyTypeRegex, 'number')
     .parse(process.argv);
 
