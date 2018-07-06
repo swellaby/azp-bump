@@ -147,6 +147,7 @@ API Functions:
 - [bumpTasks][bump-tasks-function-section]
 
 ### bumpTaskManifestFiles
+This is the main function of the API that performs the same action as the CLI: this will bump the version of the specified task manifest files. 
 
 #### bumpTaskManifestFiles Options
 
