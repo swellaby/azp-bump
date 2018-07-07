@@ -149,7 +149,16 @@ API Functions:
 ### bumpTaskManifestFiles
 This is the main function of the API that performs the same action as the CLI: this will bump the version of the specified task manifest files. 
 
-#### bumpTaskManifestFiles Options
+```js
+// JavaScript
+const vstsBump = require('vsts-bump');
+// Or for TypeScript
+import vstsBump = require('vsts-bump');
+
+vstsBump.bumpTaskManifestFiles([ 'tasks/**/task.json']);
+```
+
+#### bumpTaskManifestFiles Parameters
 
 ### bumpTask
 
