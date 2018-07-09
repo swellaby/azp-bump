@@ -50,30 +50,33 @@ suite('bin/vsts-bump Suite:', () => {
 
     suite('CLI config Suite:', () => {
         test('Should correctly set version', () => {
-            assert.isTrue(commanderVersionSpy.calledWith(packageJson.version));
+            assert.isTrue(commanderVersionSpy.calledWithExactly(packageJson.version, '-v, --version'));
         });
 
         test('Should correctly set usage', () => {
-            assert.isTrue(commanderUsageSpy.calledWith('<files> [options...]'));
+            assert.isTrue(commanderUsageSpy.calledWithExactly('<files> [options...]'));
         });
 
         test('Should correctly set type option', () => {
             const typeRegex = /^(patch|minor|major)$/i;
-            assert.isTrue(commanderOptionSpy.calledWithExactly('-t, --type [type]', 'the bump version type', typeRegex, 'patch'));
+            const typeDescription = 'The bump version type. Allowed values: major, minor, or patch.';
+            assert.isTrue(commanderOptionSpy.calledWithExactly('-t, --type [type]', typeDescription, typeRegex, 'patch'));
         });
 
         test('Should correctly set indent option', () => {
-            assert.isTrue(commanderOptionSpy.calledWithExactly('-i, --indent [indent]', 'the indent to use', cli.parseIndent));
+            const indentDescription = 'The spacing indent to use while updating the task manifests. Specifying a number will use that many spaces, ' +
+                'or a string to use a tab character. Allowed values: 1-10 (inclusive) OR t, tab, or \'\\t\'.';
+            assert.isTrue(commanderOptionSpy.calledWithExactly('-i, --indent [indent]', indentDescription, cli.parseIndent, 2));
         });
 
         test('Should correctly set quiet option', () => {
-            assert.isTrue(commanderOptionSpy.calledWithExactly('-q, --quiet', 'controls suppression of the log output'));
+            assert.isTrue(commanderOptionSpy.calledWithExactly('-q, --quiet', 'Including this flag will disable the log output'));
         });
 
         test('Should correctly set verison property type option', () => {
             const typeRegex = /^(string|number)$/i;
-            const description = 'controls the property type of the version fields';
-            assert.isTrue(commanderOptionSpy.calledWithExactly('-p, --version-property-type [versionPropertyType]', description, typeRegex, 'number'));
+            const versionPropertyTypeDescription = 'Controls the property type of the version fields. Allowed values: string, number.';
+            assert.isTrue(commanderOptionSpy.calledWithExactly('-p, --version-property-type [versionPropertyType]', versionPropertyTypeDescription, typeRegex, 'number'));
         });
 
         test('Should call parse with process.argv', () => {
