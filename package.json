@@ -1,6 +1,6 @@
 {
   "name": "vsts-bump",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Lib/CLI for bumping the version of VSTS task files",
   "license": "MIT",
   "main": "lib/index.js",
@@ -61,7 +61,7 @@
     "@swellaby/eslint-config": "^1.1.6",
     "@swellaby/nyc-config": "^1.0.12",
     "chai": "^4.1.2",
-    "eslint": "^5.0.1",
+    "eslint": "^5.1.0",
     "husky": "^1.0.0-rc.4",
     "mocha": "^5.2.0",
     "mocha-multi-reporters": "^1.1.7",
@@ -69,7 +69,7 @@
     "nyc": "^12.0.2",
     "opn-cli": "^3.1.0",
     "rimraf": "^2.6.2",
-    "sinon": "^6.1.0"
+    "sinon": "^6.1.3"
   },
   "dependencies": {
     "chalk": "^2.4.1",
