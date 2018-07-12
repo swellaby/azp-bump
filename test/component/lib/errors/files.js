@@ -91,4 +91,37 @@ suite('lib errors files Suite:', () => {
             });
         });
     });
+
+    suite('fsWrite Error Suite:', () => {
+        setup(() => {
+            setGlobEndStub();
+            fsWriteFileStub.yields(new Error());
+        });
+
+        test('Should call file write operation with correct inputs', done => {
+            index.bumpTaskManifestFiles(helpers.singleGlobArgs).catch(err => {
+                const task = JSON.stringify(helpers.validSampleOneNumericBumpedVersionTaskContents, null, 2);
+                assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, task));
+                assert.deepEqual(err.message, noDetailsErrorMessage);
+                done();
+            });
+        });
+
+        test('Should reject with correct error message when there is a file write error', done => {
+            const detailedErrorMessage = 'errno file locked';
+            const expectedErrorMessage = failureErrorMessageBase + detailedErrorMessage;
+            fsWriteFileStub.yields(new Error(detailedErrorMessage));
+            index.bumpTaskManifestFiles(helpers.singleGlobArgs).catch(err => {
+                assert.deepEqual(err.message, expectedErrorMessage);
+                done();
+            });
+        });
+
+        test('Should reject with correct error message when file write fails with no error details', done => {
+            index.bumpTaskManifestFiles(helpers.singleGlobArgs).catch(err => {
+                assert.deepEqual(err.message, noDetailsErrorMessage);
+                done();
+            });
+        });
+    });
 });
