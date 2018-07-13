@@ -139,5 +139,6 @@ module.exports = {
     taskFilePaths: taskFilePaths,
     singleGlobArgs: singleGlobArgs,
     bumpedFileResults: bumpedFileResults,
-    bumpResult: bumpResult
+    bumpResult: bumpResult,
+    tabCharacter: '\t'
 };

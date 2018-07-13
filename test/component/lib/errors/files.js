@@ -13,7 +13,6 @@ suite('lib errors files Suite:', () => {
     let globOnErrorStub;
     let fsReadFileStub;
     let fsWriteFileStub;
-    // const opts = {};
     const failureErrorMessageBase = 'Fatal error occurred while attempting to bump file. Details: ';
     const noDetailsErrorMessage = failureErrorMessageBase + 'unknown';
     const validTaskFileContents = JSON.stringify(helpers.validSampleOneTaskContents);
@@ -120,6 +119,21 @@ suite('lib errors files Suite:', () => {
         test('Should reject with correct error message when file write fails with no error details', done => {
             index.bumpTaskManifestFiles(helpers.singleGlobArgs).catch(err => {
                 assert.deepEqual(err.message, noDetailsErrorMessage);
+                done();
+            });
+        });
+    });
+
+    suite('invalid file contents Suite:', () => {
+        setup(() => {
+            setGlobEndStub();
+        });
+
+        test('Should reject with correct error message when file contents are invalid', done => {
+            fsReadFileStub.yields(null, '{/]');
+            const expectedErrorMessage = failureErrorMessageBase + 'Unexpected token / in JSON at position 1';
+            index.bumpTaskManifestFiles(helpers.singleGlobArgs).catch(err => {
+                assert.deepEqual(err.message, expectedErrorMessage);
                 done();
             });
         });

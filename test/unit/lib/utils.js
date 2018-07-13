@@ -58,7 +58,7 @@ suite('utils Suite:', () => {
     suite('validateJsonIndent Suite:', () => {
         const tabCharacter = '\t';
 
-        test('Should set json indent to default if no type is specified', () => {
+        test('Should set json indent to default if no indent is specified', () => {
             utils.validateJsonIndent(opts);
             assert.deepEqual(opts.indent, helpers.defaultJsonIndent);
         });
