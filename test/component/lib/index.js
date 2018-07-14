@@ -16,10 +16,6 @@ suite('index Suite:', () => {
     const validTaskFileContents = JSON.stringify(helpers.validSampleOneTaskContents);
     let bumpedTaskOneContents;
 
-    const createBumpedTaskJsonString = (taskContents, indent) => {
-        return JSON.stringify(taskContents, null, indent);
-    };
-
     setup(() => {
         const globOnStub = sinon.stub(Glob.prototype, 'on');
         globOnEndStub = globOnStub.withArgs(helpers.globEndEventName);
@@ -33,7 +29,7 @@ suite('index Suite:', () => {
             indent: helpers.defaultJsonIndent,
             versionPropertyType: helpers.defaultVersionPropertyType
         };
-        bumpedTaskOneContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, 2);
+        bumpedTaskOneContents = helpers.createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, 2);
     });
 
     teardown(() => {
@@ -150,7 +146,7 @@ suite('index Suite:', () => {
             test('Should use specified indent when opts has indent of 1 specified', done => {
                 const indent = 1;
                 opts.indent = indent;
-                const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, indent);
+                const taskContents = helpers.createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, indent);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
                     assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
@@ -161,7 +157,7 @@ suite('index Suite:', () => {
             test('Should use specified indent when opts has indent of 10 specified', done => {
                 const indent = 10;
                 opts.indent = indent;
-                const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, indent);
+                const taskContents = helpers.createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, indent);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
                     assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
@@ -172,7 +168,7 @@ suite('index Suite:', () => {
             test('Should use specified indent when opts has indent between 1 and 10 specified', done => {
                 const indent = 8;
                 opts.indent = indent;
-                const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, indent);
+                const taskContents = helpers.createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, indent);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
                     assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
@@ -193,7 +189,7 @@ suite('index Suite:', () => {
             test('Should use specified indent when opts has t character indent specified', done => {
                 const indent = 't';
                 opts.indent = indent;
-                const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, helpers.tabCharacter);
+                const taskContents = helpers.createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, helpers.tabCharacter);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
                     assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
@@ -204,7 +200,7 @@ suite('index Suite:', () => {
             test('Should use specified indent when opts has tab string indent specified', done => {
                 const indent = 'tab';
                 opts.indent = indent;
-                const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, helpers.tabCharacter);
+                const taskContents = helpers.createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, helpers.tabCharacter);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
                     assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
@@ -214,7 +210,7 @@ suite('index Suite:', () => {
 
             test('Should use specified indent when opts has tab character indent specified', done => {
                 opts.indent = helpers.tabCharacter;
-                const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, helpers.tabCharacter);
+                const taskContents = helpers.createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, helpers.tabCharacter);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
                     assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
@@ -342,7 +338,7 @@ suite('index Suite:', () => {
 
             test('Should use default bump type when opts has minor type specified', done => {
                 opts.type = helpers.minorReleaseType;
-                const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedMinorVersionTaskContents, helpers.defaultJsonIndent);
+                const taskContents = helpers.createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedMinorVersionTaskContents, helpers.defaultJsonIndent);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
                     assert.deepEqual(bumpResult.bumpedFiles[0].bumpedVersion, '0.9.0');
@@ -354,7 +350,7 @@ suite('index Suite:', () => {
 
             test('Should use default bump type when opts has major type specified', done => {
                 opts.type = helpers.majorReleaseType;
-                const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedMajorVersionTaskContents, helpers.defaultJsonIndent);
+                const taskContents = helpers.createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedMajorVersionTaskContents, helpers.defaultJsonIndent);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
                     assert.deepEqual(bumpResult.bumpedFiles[0].bumpedVersion, '1.0.0');
@@ -463,13 +459,117 @@ suite('index Suite:', () => {
 
             test('Should use string property type when opts has string property type specified', done => {
                 opts.versionPropertyType = 'string';
-                const taskContents = createBumpedTaskJsonString(helpers.validSampleOneBumpedTaskContents, helpers.defaultJsonIndent);
+                const taskContents = helpers.createBumpedTaskJsonString(helpers.validSampleOneBumpedTaskContents, helpers.defaultJsonIndent);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
                     assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
+        });
+    });
+
+    suite('bumpTask Suite:', () => {
+        let task;
+
+        setup(() => {
+            task = JSON.parse(JSON.stringify(helpers.validSampleOneTaskContents));
+        });
+
+        teardown(() => {
+            task = null;
+        });
+
+        test('Should bump the default version when no bumpType is specified', () => {
+            index.bumpTask(task);
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
+        });
+
+        test('Should bump the default version when null bumpType is specified', () => {
+            index.bumpTask(task, null);
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
+        });
+
+        test('Should bump the default version when undefined bumpType is specified', () => {
+            index.bumpTask(task, undefined);
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
+        });
+
+        test('Should bump the default version when empty string bumpType is specified', () => {
+            index.bumpTask(task, '');
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
+        });
+
+        test('Should bump the default version when invalid string bumpType is specified', () => {
+            index.bumpTask(task, 'asdfasef');
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
+        });
+
+        test('Should bump the patch version when patch bumpType is specified', () => {
+            index.bumpTask(task, helpers.patchReleaseType);
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
+        });
+
+        test('Should bump the minor version when minor bumpType is specified', () => {
+            index.bumpTask(task, helpers.minorReleaseType);
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedMinorVersionTaskContents);
+        });
+
+        test('Should bump the minor version when major bumpType is specified', () => {
+            index.bumpTask(task, helpers.majorReleaseType);
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedMajorVersionTaskContents);
+        });
+    });
+
+    suite('bumpTasks Suite:', () => {
+        let task;
+
+        setup(() => {
+            task = JSON.parse(JSON.stringify(helpers.validSampleOneTaskContents));
+        });
+
+        teardown(() => {
+            task = null;
+        });
+
+        test('Should bump the default version when no bumpType is specified', () => {
+            index.bumpTasks([ task ]);
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
+        });
+
+        test('Should bump the default version when null bumpType is specified', () => {
+            index.bumpTasks([ task ], null);
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
+        });
+
+        test('Should bump the default version when undefined bumpType is specified', () => {
+            index.bumpTasks([ task ], undefined);
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
+        });
+
+        test('Should bump the default version when empty string bumpType is specified', () => {
+            index.bumpTasks([ task ], '');
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
+        });
+
+        test('Should bump the default version when invalid string bumpType is specified', () => {
+            index.bumpTasks([ task ], 'asdfasef');
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
+        });
+
+        test('Should bump the patch version when patch bumpType is specified', () => {
+            index.bumpTasks([ task ], helpers.patchReleaseType);
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
+        });
+
+        test('Should bump the minor version when minor bumpType is specified', () => {
+            index.bumpTasks([ task ], helpers.minorReleaseType);
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedMinorVersionTaskContents);
+        });
+
+        test('Should bump the minor version when major bumpType is specified', () => {
+            index.bumpTasks([ task ], helpers.majorReleaseType);
+            assert.deepEqual(task, helpers.validSampleOneNumericBumpedMajorVersionTaskContents);
         });
     });
 });

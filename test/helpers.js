@@ -94,6 +94,10 @@ const bumpResult = { bumpedFiles: bumpedFileResults, bumpType: defaultReleaseTyp
 const taskOneBumpedMessage = buildBumpedFileResultMessage(taskOneBumpFileResult.initialVersion, taskOneBumpFileResult.bumpedVersion, taskOneBumpFileResult.filePath);
 const taskTwoBumpedMessage = buildBumpedFileResultMessage(taskTwoBumpFileResult.initialVersion, taskTwoBumpFileResult.bumpedVersion, taskTwoBumpFileResult.filePath);
 
+const createBumpedTaskJsonString = (taskContents, indent) => {
+    return JSON.stringify(taskContents, null, indent);
+};
+
 module.exports = {
     patchReleaseType: patchReleaseType,
     minorReleaseType: minorReleaseType,
@@ -147,5 +151,6 @@ module.exports = {
     singleGlobArgs: singleGlobArgs,
     bumpedFileResults: bumpedFileResults,
     bumpResult: bumpResult,
-    tabCharacter: '\t'
+    tabCharacter: '\t',
+    createBumpedTaskJsonString: createBumpedTaskJsonString
 };

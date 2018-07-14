@@ -133,18 +133,16 @@ suite('bin/vsts-bump Suite:', () => {
     });
 
     suite('parseIndent Suite:', () => {
-        const tabCharacter = '\t';
-
         test('Should return tab character when specified indent is t', () => {
-            assert.deepEqual(cli.parseIndent('t'), tabCharacter);
+            assert.deepEqual(cli.parseIndent('t'), helpers.tabCharacter);
         });
 
         test('Should return tab character when specified indent is tab', () => {
-            assert.deepEqual(cli.parseIndent('tab'), tabCharacter);
+            assert.deepEqual(cli.parseIndent('tab'), helpers.tabCharacter);
         });
 
         test('Should return tab character when specified indent is tab character', () => {
-            assert.deepEqual(cli.parseIndent(tabCharacter), tabCharacter);
+            assert.deepEqual(cli.parseIndent(helpers.tabCharacter), helpers.tabCharacter);
         });
 
         test('Should return number when specified indent is one as a string', () => {
