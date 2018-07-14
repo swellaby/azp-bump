@@ -44,8 +44,12 @@ const createSampleTaskContents = ((major, minor, patch) => {
 });
 
 const validSampleOneTaskContents = createSampleTaskContents(majorStr, minorStr, patchStr);
+const validSampleOneBumpedTaskContents = createSampleTaskContents(majorStr, minorStr, patchStr);
+validSampleOneBumpedTaskContents.version = createVersionObject(majorStr, minorStr, (patch + 1).toString());
 const validSampleOneNumericVersionTaskContents = createSampleTaskContents(major, minor, patch);
 const validSampleOneNumericBumpedVersionTaskContents = createSampleTaskContents(major, minor, patch + 1);
+const validSampleOneNumericBumpedMinorVersionTaskContents = createSampleTaskContents(major, minor + 1, 0);
+const validSampleOneNumericBumpedMajorVersionTaskContents = createSampleTaskContents(major + 1, 0, 0);
 const invalidSampleOneTaskContents = createSampleTaskContents('abc', minorStr, patchStr);
 const filePath = './src/foo.js';
 
@@ -126,7 +130,10 @@ module.exports = {
     numberVersionPropertyType: numberVersionPropertyType,
     defaultVersionPropertyType: defaultVersionPropertyType,
     defaultOptions: defaultOptions,
+    validSampleOneBumpedTaskContents: validSampleOneBumpedTaskContents,
     validSampleOneNumericBumpedVersionTaskContents: validSampleOneNumericBumpedVersionTaskContents,
+    validSampleOneNumericBumpedMinorVersionTaskContents: validSampleOneNumericBumpedMinorVersionTaskContents,
+    validSampleOneNumericBumpedMajorVersionTaskContents: validSampleOneNumericBumpedMajorVersionTaskContents,
     noErrorMessagePropertyDefaultMessage: 'unknown',
     buildBumpSummaryMessage: buildBumpSummaryMessage,
     defaultBumpSummaryMessage: buildBumpSummaryMessage(bumpedFileResults.length, defaultReleaseType),

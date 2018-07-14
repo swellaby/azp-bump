@@ -46,7 +46,7 @@ suite('index Suite:', () => {
             test('Should use the default indent when opts is not specified', done => {
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -54,7 +54,7 @@ suite('index Suite:', () => {
             test('Should use the default indent when opts is null', done => {
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, null).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -62,7 +62,7 @@ suite('index Suite:', () => {
             test('Should use the default indent when opts is undefined', done => {
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, undefined).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -70,7 +70,7 @@ suite('index Suite:', () => {
             test('Should use the default indent when opts is empty', done => {
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, {}).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -79,7 +79,7 @@ suite('index Suite:', () => {
                 opts.indent = null;
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -88,7 +88,7 @@ suite('index Suite:', () => {
                 opts.indent = undefined;
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -97,7 +97,7 @@ suite('index Suite:', () => {
                 opts.indent = 'bad';
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -106,7 +106,7 @@ suite('index Suite:', () => {
                 opts.indent = NaN;
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -115,7 +115,7 @@ suite('index Suite:', () => {
                 opts.indent = '10 20';
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -124,7 +124,7 @@ suite('index Suite:', () => {
                 opts.indent = -3;
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -133,7 +133,7 @@ suite('index Suite:', () => {
                 opts.indent = 0;
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -142,7 +142,7 @@ suite('index Suite:', () => {
                 opts.indent = 18;
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -153,11 +153,10 @@ suite('index Suite:', () => {
                 const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, indent);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
-
 
             test('Should use specified indent when opts has indent of 10 specified', done => {
                 const indent = 10;
@@ -165,7 +164,7 @@ suite('index Suite:', () => {
                 const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, indent);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -176,7 +175,7 @@ suite('index Suite:', () => {
                 const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, indent);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -186,7 +185,7 @@ suite('index Suite:', () => {
                 opts.indent = indent;
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -197,7 +196,7 @@ suite('index Suite:', () => {
                 const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, helpers.tabCharacter);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -208,7 +207,7 @@ suite('index Suite:', () => {
                 const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, helpers.tabCharacter);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
@@ -218,18 +217,259 @@ suite('index Suite:', () => {
                 const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedVersionTaskContents, helpers.tabCharacter);
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
-                    assert.deepEqual(bumpResult.bumpedFiles.length, helpers.taskFilePaths.length);
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
                     done();
                 }).catch(err => done(err));
             });
         });
 
         suite('bump type Suite:', () => {
+            test('Should use the default bump type when opts is not specified', done => {
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    assert.deepEqual(bumpResult.bumpType, helpers.defaultReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
 
+            test('Should use the default bump type when opts is null', done => {
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, null).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    assert.deepEqual(bumpResult.bumpType, helpers.defaultReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use the default bump type when opts is undefined', done => {
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, undefined).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    assert.deepEqual(bumpResult.bumpType, helpers.defaultReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use the default bump type when opts is empty', done => {
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, {}).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    assert.deepEqual(bumpResult.bumpType, helpers.defaultReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default bump type when opts has null type specified', done => {
+                opts.type = null;
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    assert.deepEqual(bumpResult.bumpType, helpers.defaultReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default bump type when opts has undefined type specified', done => {
+                opts.type = undefined;
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    assert.deepEqual(bumpResult.bumpType, helpers.defaultReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default bump type when opts has invalid type specified', done => {
+                opts.type = 'bad';
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    assert.deepEqual(bumpResult.bumpType, helpers.defaultReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default bump type when opts has emtpy string type specified', done => {
+                opts.type = '';
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    assert.deepEqual(bumpResult.bumpType, helpers.defaultReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default bump type when opts has upper case PATCH type specified', done => {
+                opts.type = 'PATCH';
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    assert.deepEqual(bumpResult.bumpType, helpers.defaultReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default bump type when opts has upper case MINOR type specified', done => {
+                opts.type = 'MINOR';
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    assert.deepEqual(bumpResult.bumpType, helpers.defaultReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default bump type when opts has upper case MAJOR type specified', done => {
+                opts.type = 'MAJOR';
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    assert.deepEqual(bumpResult.bumpType, helpers.defaultReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use patch bump type when opts has patch type specified', done => {
+                opts.type = helpers.patchReleaseType;
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    assert.deepEqual(bumpResult.bumpType, helpers.patchReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default bump type when opts has minor type specified', done => {
+                opts.type = helpers.minorReleaseType;
+                const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedMinorVersionTaskContents, helpers.defaultJsonIndent);
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
+                    assert.deepEqual(bumpResult.bumpedFiles[0].bumpedVersion, '0.9.0');
+                    assert.deepEqual(bumpResult.bumpedFiles[1].bumpedVersion, '0.9.0');
+                    assert.deepEqual(bumpResult.bumpType, helpers.minorReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default bump type when opts has major type specified', done => {
+                opts.type = helpers.majorReleaseType;
+                const taskContents = createBumpedTaskJsonString(helpers.validSampleOneNumericBumpedMajorVersionTaskContents, helpers.defaultJsonIndent);
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
+                    assert.deepEqual(bumpResult.bumpedFiles[0].bumpedVersion, '1.0.0');
+                    assert.deepEqual(bumpResult.bumpedFiles[1].bumpedVersion, '1.0.0');
+                    assert.deepEqual(bumpResult.bumpType, helpers.majorReleaseType);
+                    done();
+                }).catch(err => done(err));
+            });
         });
 
         suite('versionPropertyType Suite:', () => {
+            test('Should use the default property type when opts is not specified', done => {
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    done();
+                }).catch(err => done(err));
+            });
 
+            test('Should use the default property type when opts is null', done => {
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, null).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use the default property type when opts is undefined', done => {
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, undefined).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use the default property type when opts is empty', done => {
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, {}).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default property type when opts has null property type specified', done => {
+                opts.versionPropertyType = null;
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default property type when opts has undefined property type specified', done => {
+                opts.versionPropertyType = undefined;
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default property type when opts has empty string property type specified', done => {
+                opts.versionPropertyType = '';
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default property type when opts has invalid property type specified', done => {
+                opts.versionPropertyType = 'bad';
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default property type when opts has upper case STRING property type specified', done => {
+                opts.versionPropertyType = 'STRING';
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use default property type when opts has mixed case string property type specified', done => {
+                opts.versionPropertyType = 'StrinG';
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use number property type when opts has number property type specified', done => {
+                opts.versionPropertyType = 'number';
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    done();
+                }).catch(err => done(err));
+            });
+
+            test('Should use string property type when opts has string property type specified', done => {
+                opts.versionPropertyType = 'string';
+                const taskContents = createBumpedTaskJsonString(helpers.validSampleOneBumpedTaskContents, helpers.defaultJsonIndent);
+                index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
+                    assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, taskContents));
+                    assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
+                    done();
+                }).catch(err => done(err));
+            });
         });
     });
 });
