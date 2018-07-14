@@ -56,9 +56,7 @@ suite('utils Suite:', () => {
     });
 
     suite('validateJsonIndent Suite:', () => {
-        const tabCharacter = '\t';
-
-        test('Should set json indent to default if no type is specified', () => {
+        test('Should set json indent to default if no indent is specified', () => {
             utils.validateJsonIndent(opts);
             assert.deepEqual(opts.indent, helpers.defaultJsonIndent);
         });
@@ -129,19 +127,19 @@ suite('utils Suite:', () => {
         test('Should use specified json indent when t character is specified', () => {
             opts.indent = 't';
             utils.validateJsonIndent(opts);
-            assert.deepEqual(opts.indent, tabCharacter);
+            assert.deepEqual(opts.indent, helpers.tabCharacter);
         });
 
         test('Should use specified json indent when tab literal string is specified', () => {
             opts.indent = 'tab';
             utils.validateJsonIndent(opts);
-            assert.deepEqual(opts.indent, tabCharacter);
+            assert.deepEqual(opts.indent, helpers.tabCharacter);
         });
 
         test('Should use specified json indent when tab character is specified', () => {
-            opts.indent = tabCharacter;
+            opts.indent = helpers.tabCharacter;
             utils.validateJsonIndent(opts);
-            assert.deepEqual(opts.indent, tabCharacter);
+            assert.deepEqual(opts.indent, helpers.tabCharacter);
         });
     });
 

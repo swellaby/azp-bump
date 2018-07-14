@@ -6,3 +6,4 @@ node_modules/
 *.tgz*
 .ntvs_analysis.dat*
 npm-debug*
+**/.testcontext

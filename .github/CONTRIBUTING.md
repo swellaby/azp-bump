@@ -17,7 +17,7 @@ To build and/or work on this project:
 Clone the repo, change into the directory where you cloned the directory, and then run the developer setup script
 ```sh     
 git clone https://github.com/swellaby/vsts-bump.git
-cd gulp-vsts-bump 
+cd vsts-bump 
 npm run dev:setup
 ```
 
