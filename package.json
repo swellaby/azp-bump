@@ -34,8 +34,6 @@
     "pretest:unit": "rimraf .testresults/unit .coverage/unit",
     "test:component": "mocha --opts test/component/mocha.opts",
     "pretest:component": "rimraf .testresults/component .coverage/component",
-    "test:functional": "mocha --opts test/functional/mocha.opts",
-    "pretest:functional": "rimraf .testresults/functional .coverage/functional",
     "version:tagless": "npm --no-git-tag-version version patch",
     "prepublish:local": "npm run build && npm run version:tagless",
     "publish:local": "npm publish --access public",
@@ -69,11 +67,9 @@
     "mocha": "^5.2.0",
     "mocha-multi-reporters": "^1.1.7",
     "mocha-sonarqube-reporter": "^1.0.1",
-    "ncp": "^2.0.0",
     "nyc": "^12.0.2",
     "opn-cli": "^3.1.0",
     "rimraf": "^2.6.2",
-    "shelljs": "^0.8.2",
     "sinon": "^6.1.3"
   },
   "dependencies": {
