@@ -21,7 +21,7 @@ const versionPropertyTypeDescription = 'Controls the property type of the versio
  * @param {string} indent - The indent specified
  */
 const parseIndent = indent => {
-    if (indent === 't' || indent === 'tab' || indent === '\t') {
+    if (indent === 't' || indent === 'tab' || indent === '\\t') {
         return '\t';
     }
 

@@ -428,7 +428,7 @@ suite('vsts-bump Suite:', () => {
         });
 
         test('Should return tab character when specified indent is tab character', () => {
-            assert.deepEqual(cli.parseIndent(helpers.tabCharacter), helpers.tabCharacter);
+            assert.deepEqual(cli.parseIndent('\\t'), helpers.tabCharacter);
         });
 
         test('Should return number when specified indent is one as a string', () => {
