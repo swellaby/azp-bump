@@ -41,7 +41,7 @@ npm run dev:reset
 ### Tests
 We use [Mocha][mocha-url] and [Sinon][sinon-url] to test and validate, and the tests are written using [Mocha's TDD interface][mocha-tdd-url].  
 
-There are suites of [unit tests][unit-test] that validate individual functions in complete isolation, and there are also [component tests][comp-test] that use streams to validate multiple components of the module in conjunction.  
+There are suites of [unit tests][unit-test] that validate individual functions in complete isolation, and there are also [component tests][comp-test] that use validate multiple components of the module in conjunction.  
 
 The tests will be run as part of the npm `build` script and on a git commit, but there are npm scripts you can use to run the test suites directly. The test results will be displayed in the console.
 
