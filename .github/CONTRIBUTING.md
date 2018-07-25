@@ -41,7 +41,7 @@ npm run dev:reset
 ### Tests
 We use [Mocha][mocha-url] and [Sinon][sinon-url] to test and validate, and the tests are written using [Mocha's TDD interface][mocha-tdd-url].  
 
-There are suites of [unit tests][unit-test] that validate individual functions in complete isolation, and there are also [component tests][comp-test] that use validate multiple components of the module in conjunction.  
+There are suites of [unit tests][unit-test] that validate individual functions in complete isolation, and there are also [component tests][comp-test] that use validate multiple components of the module in conjunction. Additionally, there are functional tests in a separate repository [here][functional-tests] that validate end-to-end functionality of both the CLI and API.
 
 The tests will be run as part of the npm `build` script and on a git commit, but there are npm scripts you can use to run the test suites directly. The test results will be displayed in the console.
 
@@ -113,3 +113,4 @@ npm run lint
 [unit-test]: ../test/unit/
 [comp-test]: ../test/component/
 [top]: CONTRIBUTING.md#contributing
+[functional-tests]: https://github.com/swellaby/vsts-bump-tests
