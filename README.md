@@ -1,5 +1,5 @@
 # vsts-bump
-Library/CLI for bumping VSTS Task files. (Functional but still in Beta/Preview)
+Library/CLI for bumping VSTS Task files.
 
 [![npm Version Badge][npm-version-badge]][npm-package-url]
 [![npm Downloads Badge][npm-downloads-badge]][npm-package-url]
@@ -26,7 +26,7 @@ While versions are typically tracked as a string (i.e. `version: "1.2.3"`) in mo
 ```
 Incrementing the versions of VSTS tasks is a critical part of the task lifecycle, but the object format of the task version makes it very difficult to bump using existing/common bumping tools.  
 
-This utility provides both a CLI and API that make bumping VSTS Task versions simple!
+This utility provides both a CLI and API that make bumping VSTS Task versions simple! Checkout the [vsts-bump gulp plugin][gulp-vsts-bump-url] if you need to bump VSTS tasks from a gulp workflow.
 
 ## Install
 Install the package with npm (you may want to install it as dev dependency or globally,  depending on your needs):  
@@ -329,3 +329,4 @@ MIT - see license details [here][license-url]
 [vststask-jsdoc-url]: https://github.com/swellaby/vsts-bump/blob/master/lib/index.js#L31
 [vststask-typedef-url]: https://github.com/swellaby/vsts-bump/blob/master/lib/index.d.ts#L105
 [top-url]: #vsts-bump
+[gulp-vsts-bump-url]: https://www.npmjs.com/package/gulp-vsts-bump
