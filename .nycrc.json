@@ -1,7 +1,3 @@
 {
-    "extends": "@swellaby/nyc-config",
-    "include": [
-        "bin/**/*.js",
-        "lib/**/*.js"
-    ]
+    "extends": "@swellaby/nyc-config"
 }

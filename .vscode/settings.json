@@ -1,8 +1,8 @@
 {
     "files.exclude": {
         "npm-debug.log": true,
-        ".testresults": true,
-        ".coverage": true,
+        ".testresults": false,
+        ".coverage": false,
         "node_modules": true,        
         ".nyc_output": true,
         "*.tgz": true
