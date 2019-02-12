@@ -13,6 +13,7 @@ test/
 .editorconfig
 .eslintignore
 .eslintrc.js
+.gitattributes
 .huskyrc.json
 .nycrc.json
 .renovate.json
