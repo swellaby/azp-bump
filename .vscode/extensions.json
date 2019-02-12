@@ -1,12 +1,10 @@
 {
-    "recommendations": [
-        "christian-kohler.npm-intellisense",
-        "christian-kohler.path-intellisense",
-        "wix.vscode-import-cost",
-        "dbaeumer.vscode-eslint",
-        "pflannery.vscode-versionlens",
-        "eamodio.gitlens",
-        "EditorConfig.EditorConfig",
-        "streetsidesoftware.code-spell-checker"
-    ],
+  "recommendations": [
+    "swellaby.common-pack",
+    "dbaeumer.vscode-eslint",
+    "christian-kohler.path-intellisense",
+    "christian-kohler.npm-intellisense",
+    "pflannery.vscode-versionlens",
+    "hbenl.vscode-mocha-test-adapter"
+  ]
 }
