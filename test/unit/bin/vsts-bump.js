@@ -73,7 +73,7 @@ suite('bin/vsts-bump Suite:', () => {
             assert.isTrue(commanderOptionSpy.calledWithExactly('-q, --quiet', 'Including this flag will disable the log output'));
         });
 
-        test('Should correctly set verison property type option', () => {
+        test('Should correctly set version property type option', () => {
             const typeRegex = /^(string|number)$/i;
             const versionPropertyTypeDescription = 'Controls the property type of the version fields. Allowed values: string, number.';
             assert.isTrue(commanderOptionSpy.calledWithExactly('-p, --version-property-type [versionPropertyType]', versionPropertyTypeDescription, typeRegex, 'number'));

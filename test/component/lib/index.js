@@ -286,7 +286,7 @@ suite('index Suite:', () => {
                 }).catch(err => done(err));
             });
 
-            test('Should use default bump type when opts has emtpy string type specified', done => {
+            test('Should use default bump type when opts has empty string type specified', done => {
                 opts.type = '';
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
@@ -440,7 +440,7 @@ suite('index Suite:', () => {
             });
 
             test('Should use default property type when opts has mixed case string property type specified', done => {
-                opts.versionPropertyType = 'StrinG';
+                opts.versionPropertyType = 'StrInG';
                 index.bumpTaskManifestFiles(helpers.singleGlobArgs, opts).then(bumpResult => {
                     assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
                     assert.deepEqual(bumpResult.bumpedFiles, helpers.bumpedFileResults);
@@ -501,7 +501,7 @@ suite('index Suite:', () => {
         });
 
         test('Should bump the default version when invalid string bumpType is specified', () => {
-            index.bumpTask(task, 'asdfasef');
+            index.bumpTask(task, 'aSdFaSef');
             assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
         });
 
@@ -553,7 +553,7 @@ suite('index Suite:', () => {
         });
 
         test('Should bump the default version when invalid string bumpType is specified', () => {
-            index.bumpTasks([ task ], 'asdfasef');
+            index.bumpTasks([ task ], 'aSdFaSef');
             assert.deepEqual(task, helpers.validSampleOneNumericBumpedVersionTaskContents);
         });
 

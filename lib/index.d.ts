@@ -1,4 +1,4 @@
-declare module VstsBump {    
+declare module VstsBump {
     export type BumpType = 'major' | 'minor' | 'patch';
 
     /**
@@ -19,7 +19,7 @@ declare module VstsBump {
         indent?: number|string,
         /**
          * Specifies whether or not the bump process should be quiet. If true, log output will
-         * be supressed.
+         * be suppressed.
          *
          * @type {boolean}
          * @memberof Opts
@@ -42,7 +42,7 @@ declare module VstsBump {
          */
         type?: BumpType
     }
-    
+
     /**
      * Represents the result of a bumped task manifest file.
      *
@@ -72,7 +72,7 @@ declare module VstsBump {
          */
         bumpedVersion: string
     }
-    
+
     /**
      * Represents the result of the requested bump operation.
      *
@@ -81,7 +81,7 @@ declare module VstsBump {
      */
     export interface BumpResult {
         /**
-         * The type of bump (major, minor, or patch) that was performed. 
+         * The type of bump (major, minor, or patch) that was performed.
          *
          * @type {string}
          * @memberof BumpResult
@@ -95,7 +95,7 @@ declare module VstsBump {
          */
         bumpedFiles: BumpedFileResult[]
     }
-    
+
     /**
      * Represents a VSTS Task Manifest
      *
@@ -109,7 +109,7 @@ declare module VstsBump {
             Patch: number|string
         }
     }
-    
+
     /**
      * Bumps the provided task object with the specified bump type.
      *
@@ -118,7 +118,7 @@ declare module VstsBump {
      * @param {BumpType} [bumpType] - The type of bump to perform.
      */
     export function bumpTask(task: VstsTask, bumpType?: BumpType): void;
-    
+
     /**
      * Bumps the provided task objects with the specified bump type.
      *
@@ -127,7 +127,7 @@ declare module VstsBump {
      * @param {BumpType} [bumpType] - The type of bump to perform.
      */
     export function bumpTasks(tasks: VstsTask[], bumpType?: BumpType): void;
-    
+
     /**
      * Bumps all of the task manifest files in the specified globs using the provided bump options.
      *

@@ -162,7 +162,7 @@ suite('utils Suite:', () => {
         });
 
         test('Should set version property type to default if mixed case string type is specified', () => {
-            opts.versionPropertyType = 'StrinG';
+            opts.versionPropertyType = 'StrInG';
             utils.validateVersionPropertyType(opts);
             assert.deepEqual(opts.versionPropertyType, helpers.defaultVersionPropertyType);
         });
@@ -278,7 +278,7 @@ suite('utils Suite:', () => {
         });
 
         test('Should throw correct error when task version object has NaN string property', () => {
-            const badTask = helpers.createSampleTaskContents(0, 1, 'foobaroo');
+            const badTask = helpers.createSampleTaskContents(0, 1, 'fooBaRoo');
             assert.throws(() => utils.getTaskVersion(badTask), invalidTaskErrorMessage);
         });
 
