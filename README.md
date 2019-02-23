@@ -15,13 +15,13 @@ Library/CLI for bumping Azure Pipelines (formerly known as VSTS) Task Manifest f
 While versions are typically tracked as a string (i.e. `version: "1.2.3"`) in most places/tools, Azure Pipelines Tasks store the version of the task in the manifest file as an object. To make things more complicated, the version properties can be strings and/or numbers. For example:  
 ```json
 { 
-    ...
-    "version": {
-        "Major": 1,
-        "Minor": "3",
-        "Patch": 0 
-    },
-    ...
+  ...
+  "version": {
+    "Major": 1,
+    "Minor": "3",
+    "Patch": 0 
+  },
+  ...
 }
 ```
 Incrementing the versions of Azure Pipelines tasks is a critical part of the task lifecycle, but the object format of the task version makes it very difficult to bump using existing/common bumping tools.  
@@ -66,9 +66,9 @@ We typically recommend installing `vsts-bump` as a dev dependency in your repos/
 
 ```json
 {
-    "scripts": [
-        "tasks:bump": "vsts-bump tasks/**/task.json"
-    ]
+  "scripts": [
+    "tasks:bump": "vsts-bump tasks/**/task.json"
+  ]
 }
 ```
 ### CLI Arguments
@@ -194,21 +194,21 @@ The `opts` parameter has properties very similar to the [CLI options][cli-option
         Specifying `string` will result in the version property values being strings:
         ```json
         { 
-            "version": {
-                "Major": "1",
-                "Minor": "2",
-                "Patch": "3" 
-            },
+          "version": {
+            "Major": "1",
+            "Minor": "2",
+            "Patch": "3" 
+          },
         }
         ``` 
         Specifying `number` will result in those values being set to numbers:
         ```json
         { 
-            "version": {
-                "Major": 1,
-                "Minor": 2,
-                "Patch": 3 
-            },
+          "version": {
+            "Major": 1,
+            "Minor": 2,
+            "Patch": 3 
+          },
         }
         ``` 
 
@@ -301,12 +301,12 @@ MIT - see license details [here][license-url]
 [npm-package-url]: https://www.npmjs.com/package/vsts-bump
 [license-url]: ./LICENSE
 [license-badge]: https://img.shields.io/github/license/swellaby/vsts-bump.svg
-[tests-badge]: https://img.shields.io/appveyor/tests/swellaby/vsts-bump.svg?label=unit%20tests
+[tests-badge]: https://img.shields.io/appveyor/tests/swellaby/vsts-bump/master.svg?label=unit%20tests
 [appveyor-url]: https://ci.appveyor.com/project/swellaby/vsts-bump
-[appveyor-badge]: https://img.shields.io/appveyor/ci/swellaby/vsts-bump.svg?label=windows%20build
+[appveyor-badge]: https://img.shields.io/appveyor/ci/swellaby/vsts-bump/master.svg?label=windows%20build
 [circleci-url]: https://circleci.com/gh/swellaby/vsts-bump
-[circleci-badge]: https://img.shields.io/circleci/project/github/swellaby/vsts-bump.svg?label=linux%20build
-[codecov-badge]: https://img.shields.io/codecov/c/github/swellaby/vsts-bump.svg
+[circleci-badge]: https://img.shields.io/circleci/project/github/swellaby/vsts-bump/master.svg?label=linux%20build
+[codecov-badge]: https://img.shields.io/codecov/c/github/swellaby/vsts-bump/master.svg
 [codecov-url]: https://codecov.io/gh/swellaby/vsts-bump
 [sonar-quality-gate-badge]: https://sonarcloud.io/api/project_badges/measure?project=swellaby%3Avsts-bump&metric=alert_status
 [sonar-url]: https://sonarcloud.io/dashboard?id=swellaby%3Avsts-bump
