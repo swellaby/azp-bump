@@ -232,7 +232,7 @@ suite('index Suite:', () => {
             assert.throws(() => index.bumpTask({}), invalidTaskErrorMessage);
         });
 
-        test('Should succesfuly bump version when task is valid', () => {
+        test('Should successfully bump version when task is valid', () => {
             utilsGetTaskVersionStub.onFirstCall().callsFake(() => helpers.initialVersion);
             const task = helpers.createSampleTaskContents(0, 1, 2);
             const opts = { type: helpers.minorReleaseType };

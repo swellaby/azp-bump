@@ -1,5 +1,5 @@
 # vsts-bump
-Library/CLI for bumping VSTS Task files.
+Library/CLI for bumping Azure Pipelines (formerly known as VSTS) Task Manifest files.
 
 [![npm Version Badge][npm-version-badge]][npm-package-url]
 [![npm Downloads Badge][npm-downloads-badge]][npm-package-url]
@@ -12,21 +12,21 @@ Library/CLI for bumping VSTS Task files.
 [![Sonar Quality Gate Badge][sonar-quality-gate-badge]][sonar-url]
 
 ## About
-While versions are typically tracked as a string (i.e. `version: "1.2.3"`) in most places/tools, VSTS Tasks store the version of the task in the manifest file as an object. To make things more complicated, the version properties can be strings and/or numbers. For example:  
+While versions are typically tracked as a string (i.e. `version: "1.2.3"`) in most places/tools, Azure Pipelines Tasks store the version of the task in the manifest file as an object. To make things more complicated, the version properties can be strings and/or numbers. For example:  
 ```json
 { 
-    ...
-    "version": {
-        "Major": 1,
-        "Minor": "3",
-        "Patch": 0 
-    },
-    ...
+  ...
+  "version": {
+    "Major": 1,
+    "Minor": "3",
+    "Patch": 0 
+  },
+  ...
 }
 ```
-Incrementing the versions of VSTS tasks is a critical part of the task lifecycle, but the object format of the task version makes it very difficult to bump using existing/common bumping tools.  
+Incrementing the versions of Azure Pipelines tasks is a critical part of the task lifecycle, but the object format of the task version makes it very difficult to bump using existing/common bumping tools.  
 
-This utility provides both a CLI and API that make bumping VSTS Task versions simple! Checkout the [vsts-bump gulp plugin][gulp-vsts-bump-url] if you need to bump VSTS tasks from a gulp workflow.
+This utility provides both a CLI and API that make bumping Azure Pipelines Task versions simple! Checkout the [vsts-bump gulp plugin][gulp-vsts-bump-url] if you need to bump Azure Pipelines tasks from a gulp workflow.
 
 ## Install
 Install the package with npm (you may want to install it as dev dependency or globally,  depending on your needs):  
@@ -62,13 +62,13 @@ Note that you can run `vsts-bump -h` or `vsts-bump --help` to get inline help in
 To get the version of `vsts-bump` simply run `vsts-bump -v` or `vsts-bump --version`
 
 ### Setup
-We typically recommand installing `vsts-bump` as a dev dependency in your repos/packages where you need to bump your VSTS Tasks, and then adding an npm script to your `package.json` file. For example:
+We typically recommend installing `vsts-bump` as a dev dependency in your repos/packages where you need to bump your Azure Pipelines Tasks, and then adding an npm script to your `package.json` file. For example:
 
 ```json
 {
-    "scripts": [
-        "tasks:bump": "vsts-bump tasks/**/task.json"
-    ]
+  "scripts": [
+    "tasks:bump": "vsts-bump tasks/**/task.json"
+  ]
 }
 ```
 ### CLI Arguments
@@ -149,7 +149,7 @@ There are several options supported by the CLI that allow you to control certain
     ```
 
 ## API
-The `vsts-bump` API provides functions for bumping task manifest files (similar to the CLI), as well as for bumping VSTS Task Objects. `vsts-bump` ships with its corresponding TypeScript declaration file so the API can be easily consumed from both JavaScript and TypeScript codebases.
+The `vsts-bump` API provides functions for bumping task manifest files (similar to the CLI), as well as for bumping Azure Pipelines Task Objects. `vsts-bump` ships with its corresponding TypeScript declaration file so the API can be easily consumed from both JavaScript and TypeScript codebases.
 
 API Functions:
 - [bumpTaskManifestFiles][bump-task-manifest-files-function-section]
@@ -172,7 +172,7 @@ vstsBump.bumpTaskManifestFiles([ 'tasks/**/task.json'])
 
 #### vstsBump.bumpTaskManifestFiles(fileGlobs, [opts])
 
-* `fileGlobs` `{Array<string>}` An array of file globs that match the VSTS Task Manifest files. Make sure you **always** use forward slashes (`/`), even on Windows.
+* `fileGlobs` `{Array<string>}` An array of file globs that match the Azure Pipelines Task Manifest files. Make sure you **always** use forward slashes (`/`), even on Windows.
 * `opts` `{Object}` The configuration options (more details below)
 * returns: `{Promise<Object>}` (more details below)
 
@@ -194,21 +194,21 @@ The `opts` parameter has properties very similar to the [CLI options][cli-option
         Specifying `string` will result in the version property values being strings:
         ```json
         { 
-            "version": {
-                "Major": "1",
-                "Minor": "2",
-                "Patch": "3" 
-            },
+          "version": {
+            "Major": "1",
+            "Minor": "2",
+            "Patch": "3" 
+          },
         }
         ``` 
         Specifying `number` will result in those values being set to numbers:
         ```json
         { 
-            "version": {
-                "Major": 1,
-                "Minor": 2,
-                "Patch": 3 
-            },
+          "version": {
+            "Major": 1,
+            "Minor": 2,
+            "Patch": 3 
+          },
         }
         ``` 
 
@@ -238,7 +238,7 @@ The `bumpTaskManifestFiles` function returns a Promise that upon successful comp
 For more info on opts, check the corresponding [jsdoc][bumpresult-jsdoc-url] and [typedef][bumpresult-typedef-url] content.
 
 ### bumpTask
-The `bumpTask` function is also provided for when you want to bump an object representation of a VSTS Task Manifest file (for example if you are parsing the manifest files elsewhere). Note that the [bumpTasks][bump-tasks-function-section] function performs the same action but allows you to pass an array of tasks instead.
+The `bumpTask` function is also provided for when you want to bump an object representation of a Azure Pipelines Task Manifest file (for example if you are parsing the manifest files elsewhere). Note that the [bumpTasks][bump-tasks-function-section] function performs the same action but allows you to pass an array of tasks instead.
 
 ```js
 // JavaScript
@@ -251,7 +251,7 @@ vstsBump.bumpTask(vstsTask);
 ```
 
 #### vstsBump.bumpTask(task, [bumpType])
-* `task` `{Object}` The VSTS Task Object. 
+* `task` `{Object}` The Azure Pipelines Task Object. 
     * Must contain a `version` property that is an object with properties `Major`, `Minor`, and `Patch`. For example:
     ```js
     const task = {
@@ -274,7 +274,7 @@ See the corresponding [jsdoc][vststask-jsdoc-url] and [typedef][vststask-typedef
 This function is **exactly** the same as the [bumpTask][bump-task-function-section] function except that it takes an array of task objects so that it can be used to bump multiple tasks. 
 
 Parameters:
-* `tasks` `{Object[]}` The VSTS Task Objects. 
+* `tasks` `{Object[]}` The Azure Pipelines Task Objects. 
 * `bumpType` `{string}` The type of bump to use.
     * Allowed values: `major`, `minor`, `patch`
     * Default Value: `patch`
@@ -301,12 +301,12 @@ MIT - see license details [here][license-url]
 [npm-package-url]: https://www.npmjs.com/package/vsts-bump
 [license-url]: ./LICENSE
 [license-badge]: https://img.shields.io/github/license/swellaby/vsts-bump.svg
-[tests-badge]: https://img.shields.io/appveyor/tests/swellaby/vsts-bump.svg?label=unit%20tests
+[tests-badge]: https://img.shields.io/appveyor/tests/swellaby/vsts-bump/master.svg?label=unit%20tests
 [appveyor-url]: https://ci.appveyor.com/project/swellaby/vsts-bump
-[appveyor-badge]: https://img.shields.io/appveyor/ci/swellaby/vsts-bump.svg?label=windows%20build
+[appveyor-badge]: https://img.shields.io/appveyor/ci/swellaby/vsts-bump/master.svg?label=windows%20build
 [circleci-url]: https://circleci.com/gh/swellaby/vsts-bump
-[circleci-badge]: https://img.shields.io/circleci/project/github/swellaby/vsts-bump.svg?label=linux%20build
-[codecov-badge]: https://img.shields.io/codecov/c/github/swellaby/vsts-bump.svg
+[circleci-badge]: https://img.shields.io/circleci/project/github/swellaby/vsts-bump/master.svg?label=linux%20build
+[codecov-badge]: https://img.shields.io/codecov/c/github/swellaby/vsts-bump/master.svg
 [codecov-url]: https://codecov.io/gh/swellaby/vsts-bump
 [sonar-quality-gate-badge]: https://sonarcloud.io/api/project_badges/measure?project=swellaby%3Avsts-bump&metric=alert_status
 [sonar-url]: https://sonarcloud.io/dashboard?id=swellaby%3Avsts-bump

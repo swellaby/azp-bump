@@ -59,7 +59,7 @@ suite('lib errors params Suite:', () => {
         });
 
         test('Should throw correct error when task version object has NaN string property', () => {
-            const badTask = helpers.createSampleTaskContents(0, 1, 'foobaroo');
+            const badTask = helpers.createSampleTaskContents(0, 1, 'fooBarOo');
             assert.throws(() => index.bumpTask(badTask), invalidTaskErrorMessage);
         });
 
@@ -116,7 +116,7 @@ suite('lib errors params Suite:', () => {
         });
 
         test('Should throw correct error when task array contains task with version object that has NaN string property', () => {
-            const badTask = helpers.createSampleTaskContents(0, 1, 'foobaroo');
+            const badTask = helpers.createSampleTaskContents(0, 1, 'fooBarOo');
             assert.throws(() => index.bumpTasks([ badTask ]), invalidTaskErrorMessage);
         });
 

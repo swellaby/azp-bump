@@ -1,17 +1,50 @@
 {
-    "files.exclude": {
-        "npm-debug.log": true,
-        ".testresults": true,
-        ".coverage": true,
-        "node_modules": true,        
-        ".nyc_output": true,
-        "**/*.tgz": true
-    },
-    "eslint.options": {
-        "configFile": "./.eslintrc.js",
-        "ignorePath": "./.eslintignore"
+  "files.exclude": {
+    "npm-debug.log": true,
+    ".testresults": true,
+    ".coverage": true,
+    "node_modules": true,
+    ".nyc_output": true,
+    "**/*.tgz": true
+  },
+  "cSpell.enabled": true,
+  "cSpell.ignorePaths": [
+    "node_modules",
+    "**/.git/**",
+    ".vscode",
+    ".eslintignore",
+    ".gitignore",
+    ".npmignore",
+    "package-lock.json",
+  ],
+  "cSpell.enabledLanguageIds": [
+    "ignore",
+    "javascript",
+    "json",
+    "markdown",
+    "plaintext",
+    "properties",
+    "text",
+    "typescript",
+    "yaml"
+  ],
+  "cSpell.dictionaries": [
+    "companies",
+    "en_us",
+    "filetypes",
+    "misc",
+    "node",
+    "npm",
+    "softwareTerms"
+  ],
+  "vsicons.associations.files": [
+    {
+      "icon": "mocha",
+      "extensions": [
+        ".mocharc.yml"
+      ],
+      "filename": true,
+      "format": "svg"
     }
+  ]
 }
-
-// "coverage-gutters.showLineCoverage": true,
-// "coverage-gutters.showRulerCoverage": true,

@@ -1,15 +1,38 @@
 {
-    "version": "0.1",
-    "language": "en",
-    "words": [
-      "opensource",
-      "sonarqube",
-      "swellaby",
-      "tagless",
-      "testresults",
-      "vsts"
-    ],
-    "flagWords": [
+  "version": "0.1",
+  "language": "en",
+  "words": [
+    "appdata",
+    "appveyor",
+    "bumpresult",
+    "bumptask",
+    "bumptaskmanifestfiles",
+    "bumptasks",
+    "circleci",
+    "codebases",
+    "codecov",
+    "devops",
+    "dsonar",
+    "istanbuljs",
+    "lcov",
+    "lifecycle",
+    "mocharc",
+    "opensource",
+    "repo",
+    "repos",
+    "sinonjs",
+    "sonar",
+    "sonarcloud",
+    "sonarqube",
+    "swellaby",
+    "tagless",
+    "testresults",
+    "veyor",
+    "vsts",
+    "vststask",
+    "xunit"
+  ],
+  "flagWords": [
 
-    ]
+  ]
 }

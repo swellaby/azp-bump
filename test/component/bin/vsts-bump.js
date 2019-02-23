@@ -247,7 +247,7 @@ suite('vsts-bump Suite:', () => {
             }).catch(err => done(err));
         });
 
-        test('Should use default bump type when opts has emtpy string type specified', done => {
+        test('Should use default bump type when opts has empty string type specified', done => {
             opts.type = '';
             cli.bump().then(() => {
                 assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
@@ -369,7 +369,7 @@ suite('vsts-bump Suite:', () => {
         });
 
         test('Should use default property type when opts has mixed case string property type specified', done => {
-            opts.versionPropertyType = 'StrinG';
+            opts.versionPropertyType = 'StRinG';
             cli.bump().then(() => {
                 assert.isTrue(fsWriteFileStub.calledWith(helpers.taskOneFilePath, bumpedTaskOneContents));
                 assert.isTrue(processExitStub.calledWith(0));
