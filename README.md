@@ -1,6 +1,14 @@
 # vsts-bump
 Library/CLI for bumping Azure Pipelines (formerly known as VSTS) Task Manifest files.
 
+**Package Rename Notice** 
+
+*This package has been renamed to azp-bump. Please use azp-bump instead.*
+https://www.npmjs.com/package/azp-bump  
+<br />
+<br />
+
+
 [![npm Version Badge][npm-version-badge]][npm-package-url]
 [![npm Downloads Badge][npm-downloads-badge]][npm-package-url]
 [![License Badge][license-badge]][license-url]  
