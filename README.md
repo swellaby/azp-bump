@@ -1,13 +1,5 @@
-# vsts-bump
+# azp-bump
 Library/CLI for bumping Azure Pipelines (formerly known as VSTS) Task Manifest files.
-
-**Package Rename Notice** 
-
-*This package has been renamed to azp-bump. Please use azp-bump instead.*
-https://www.npmjs.com/package/azp-bump  
-<br />
-<br />
-
 
 [![npm Version Badge][npm-version-badge]][npm-package-url]
 [![npm Downloads Badge][npm-downloads-badge]][npm-package-url]
@@ -39,43 +31,43 @@ This utility provides both a CLI and API that make bumping Azure Pipelines Task 
 ## Install
 Install the package with npm (you may want to install it as dev dependency or globally,  depending on your needs):  
 ```sh
-npm i vsts-bump
+npm i azp-bump
 ```
 
 ## Usage
-Basic usage for the CLI follows the pattern `vsts-bump <fileGlobs> [options..]` For example:  
+Basic usage for the CLI follows the pattern `azp-bump <fileGlobs> [options..]` For example:  
 ```sh
-vsts-bump tasks/**/task.json
+azpd-bump tasks/**/task.json
 ```
 See the [Arguments section][cli-arguments-section] and the [Options section][cli-options-section] for more detailed info. Make sure you **always** use forward slashes (`/`), even on Windows.
 
 Basic usage for the core API function:
 ```js
 // JavaScript
-const vstsBump = require('vsts-bump');
+const azpBump = require('azp-bump');
 // Or for TypeScript
-import vstsBump = require('vsts-bump');
+import azpBump = require('azp-bump');
 
-vstsBump.bumpTaskManifestFiles([ 'tasks/**/task.json'])
+azpBump.bumpTaskManifestFiles([ 'tasks/**/task.json'])
     .then(bumpResult => console.log(bumpResult)
     .catch(err => console.error(err));
 ```
 
 ## CLI
-The CLI executable is called `vsts-bump` and can be invoked after it has been installed. 
+The CLI executable is called `azp-bump` and can be invoked after it has been installed. 
 
-Note that you can run `vsts-bump -h` or `vsts-bump --help` to get inline help information.
+Note that you can run `azp-bump -h` or `azp-bump --help` to get inline help information.
 
 ### Version
-To get the version of `vsts-bump` simply run `vsts-bump -v` or `vsts-bump --version`
+To get the version of `azp-bump` simply run `azp-bump -v` or `azp-bump --version`
 
 ### Setup
-We typically recommend installing `vsts-bump` as a dev dependency in your repos/packages where you need to bump your Azure Pipelines Tasks, and then adding an npm script to your `package.json` file. For example:
+We typically recommend installing `azp-bump` as a dev dependency in your repos/packages where you need to bump your Azure Pipelines Tasks, and then adding an npm script to your `package.json` file. For example:
 
 ```json
 {
   "scripts": [
-    "tasks:bump": "vsts-bump tasks/**/task.json"
+    "tasks:bump": "azp-bump tasks/**/task.json"
   ]
 }
 ```
@@ -85,8 +77,8 @@ The only required argument is at least one file path or [file glob][glob-primer-
 Some examples:
 
 ```sh
-vsts-bump src/**/task.json
-vsts-bump src/**/task.json tasks/**/task.json
+azp-bump src/**/task.json
+azp-bump src/**/task.json tasks/**/task.json
 ```
 
 ### CLI Options
@@ -100,8 +92,8 @@ There are several options supported by the CLI that allow you to control certain
 
     Example usage:
     ```sh
-    vsts-bump -t minor tasks/**/task.json
-    vsts-bump --type major tasks/**/task.json
+    azp-bump -t minor tasks/**/task.json
+    azp-bump --type major tasks/**/task.json
     ```  
 * `-i`, `--indent` - Controls the type of spacing indent used when updating the task manifests.  
 
@@ -111,17 +103,17 @@ There are several options supported by the CLI that allow you to control certain
 
     Example usage:
     ```sh
-    vsts-bump -i 4 tasks/**/task.json
-    vsts-bump -i tab tasks/**/task.json
-    vsts-bump --indent 8 tasks/**/task.json
+    azp-bump -i 4 tasks/**/task.json
+    azp-bump -i tab tasks/**/task.json
+    azp-bump --indent 8 tasks/**/task.json
     ```
 
 * `-q`, `--quiet` - Add this flag to perform the bump quietly (suppress log output).  
 
     Example usage:
     ```sh
-    vsts-bump -q tasks/**/task.json
-    vsts-bump --quiet tasks/**/task.json
+    azp-bump -q tasks/**/task.json
+    azp-bump --quiet tasks/**/task.json
     ```
 
 * `-p`, `--version-property-type` - Controls which property type to use for the version properties in the task manifests.  
@@ -152,12 +144,12 @@ There are several options supported by the CLI that allow you to control certain
 
     Example usage:
     ```sh
-    vsts-bump -p string tasks/**/task.json
-    vsts-bump --version-property-type string tasks/**/task.json
+    azp-bump -p string tasks/**/task.json
+    azp-bump --version-property-type string tasks/**/task.json
     ```
 
 ## API
-The `vsts-bump` API provides functions for bumping task manifest files (similar to the CLI), as well as for bumping Azure Pipelines Task Objects. `vsts-bump` ships with its corresponding TypeScript declaration file so the API can be easily consumed from both JavaScript and TypeScript codebases.
+The `azp-bump` API provides functions for bumping task manifest files (similar to the CLI), as well as for bumping Azure Pipelines Task Objects. `azp-bump` ships with its corresponding TypeScript declaration file so the API can be easily consumed from both JavaScript and TypeScript codebases.
 
 API Functions:
 - [bumpTaskManifestFiles][bump-task-manifest-files-function-section]
@@ -169,16 +161,16 @@ This is the main function of the API that performs the same action as the CLI: t
 
 ```js
 // JavaScript
-const vstsBump = require('vsts-bump');
+const azpBump = require('azp-bump');
 // Or for TypeScript
-import vstsBump = require('vsts-bump');
+import azpBump = require('azp-bump');
 
-vstsBump.bumpTaskManifestFiles([ 'tasks/**/task.json'])
+azpBump.bumpTaskManifestFiles([ 'tasks/**/task.json'])
     .then(bumpResult => console.log(bumpResult)
     .catch(err => console.error(err));
 ```
 
-#### vstsBump.bumpTaskManifestFiles(fileGlobs, [opts])
+#### azpBump.bumpTaskManifestFiles(fileGlobs, [opts])
 
 * `fileGlobs` `{Array<string>}` An array of file globs that match the Azure Pipelines Task Manifest files. Make sure you **always** use forward slashes (`/`), even on Windows.
 * `opts` `{Object}` The configuration options (more details below)
@@ -223,11 +215,11 @@ The `opts` parameter has properties very similar to the [CLI options][cli-option
 Example usage with `opts`:
 ```js
 // JavaScript
-const vstsBump = require('vsts-bump');
+const azpBump = require('azp-bump');
 // Or for TypeScript
-import vstsBump = require('vsts-bump');
+import azpBump = require('azp-bump');
 
-vstsBump.bumpTaskManifestFiles(['tasks/**/task.json'], { type: 'minor', indent: 't' })
+azpBump.bumpTaskManifestFiles(['tasks/**/task.json'], { type: 'minor', indent: 't' })
     .then(bumpResult => console.log(bumpResult)
     .catch(err => console.error(err));
 ```
@@ -250,15 +242,15 @@ The `bumpTask` function is also provided for when you want to bump an object rep
 
 ```js
 // JavaScript
-const vstsBump = require('vsts-bump');
+const azpBump = require('azp-bump');
 // Or for TypeScript
-import vstsBump = require('vsts-bump');
+import azpBump = require('azp-bump');
 
-const vstsTask = getTaskFromSomewhere(...);
-vstsBump.bumpTask(vstsTask);
+const azpBump = getTaskFromSomewhere(...);
+azpBump.bumpTask(azpTask);
 ```
 
-#### vstsBump.bumpTask(task, [bumpType])
+#### azpBump.bumpTask(task, [bumpType])
 * `task` `{Object}` The Azure Pipelines Task Object. 
     * Must contain a `version` property that is an object with properties `Major`, `Minor`, and `Patch`. For example:
     ```js
@@ -269,7 +261,7 @@ vstsBump.bumpTask(vstsTask);
             Patch: 2
         }
     };
-    vstsBump.bumpTask(task)
+    azpBump.bumpTask(task)
     ```
 * `bumpType` `{string}` The type of bump to use.
     * Allowed values: `major`, `minor`, `patch`
@@ -304,11 +296,11 @@ MIT - see license details [here][license-url]
 
 [Back to Top][top-url]
 
-[npm-version-badge]: https://img.shields.io/npm/v/vsts-bump.svg
-[npm-downloads-badge]: https://img.shields.io/npm/dt/vsts-bump.svg
-[npm-package-url]: https://www.npmjs.com/package/vsts-bump
+[npm-version-badge]: https://img.shields.io/npm/v/azp-bump.svg
+[npm-downloads-badge]: https://img.shields.io/npm/dt/azp-bump.svg
+[npm-package-url]: https://www.npmjs.com/package/azp-bump
 [license-url]: ./LICENSE
-[license-badge]: https://img.shields.io/github/license/swellaby/vsts-bump.svg
+[license-badge]: https://img.shields.io/github/license/swellaby/azp-bump.svg
 [tests-badge]: https://img.shields.io/appveyor/tests/swellaby/vsts-bump/master.svg?label=unit%20tests
 [appveyor-url]: https://ci.appveyor.com/project/swellaby/vsts-bump
 [appveyor-badge]: https://img.shields.io/appveyor/ci/swellaby/vsts-bump/master.svg?label=windows%20build
