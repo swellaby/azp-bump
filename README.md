@@ -328,5 +328,5 @@ MIT - see license details [here][license-url]
 [bumpresult-typedef-url]: https://github.com/swellaby/vsts-bump/blob/master/lib/index.d.ts#L82
 [vststask-jsdoc-url]: https://github.com/swellaby/vsts-bump/blob/master/lib/index.js#L31
 [vststask-typedef-url]: https://github.com/swellaby/vsts-bump/blob/master/lib/index.d.ts#L105
-[top-url]: #vsts-bump
+[top-url]: #azp-bump
 [gulp-vsts-bump-url]: https://www.npmjs.com/package/gulp-vsts-bump
