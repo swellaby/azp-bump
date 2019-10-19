@@ -37,14 +37,7 @@
     "npm",
     "softwareTerms"
   ],
-  "vsicons.associations.files": [
-    {
-      "icon": "mocha",
-      "extensions": [
-        ".mocharc.yml"
-      ],
-      "filename": true,
-      "format": "svg"
-    }
-  ]
+  "files.associations": {
+    "**/.azure-pipelines/**": "azure-pipelines"
+  }
 }
