@@ -5,11 +5,13 @@ Library/CLI for bumping Azure Pipelines (formerly known as VSTS) Task Manifest f
 [![npm Downloads Badge][npm-downloads-badge]][npm-package-url]
 [![License Badge][license-badge]][license-url]  
 
-[![CircleCI Badge][circleci-badge]][circleci-url]
-[![AppVeyor Badge][appveyor-badge]][appveyor-url]
-[![Test Results Badge][tests-badge]][sonar-tests-url]
-[![Codecov Badge][codecov-badge]][codecov-url]
-[![Sonar Quality Gate Badge][sonar-quality-gate-badge]][sonar-url]
+[![Linux CI Badge][linux-ci-badge]][linux-ci-url]
+[![Mac CI Badge][mac-ci-badge]][mac-ci-url]
+[![Windows CI Badge][windows-ci-badge]][windows-ci-url]  
+
+[![Test Results Badge][tests-badge]][tests-url]
+[![Coverage Badge][coverage-badge]][coverage-url]
+[![Sonar Quality GateBadge][quality-gate-badge]][sonar-project-url]  
 
 ## About
 While versions are typically tracked as a string (i.e. `version: "1.2.3"`) in most places/tools, Azure Pipelines Tasks store the version of the task in the manifest file as an object. To make things more complicated, the version properties can be strings and/or numbers. For example:  
@@ -268,7 +270,7 @@ azpBump.bumpTask(azpTask);
     * Default Value: `patch`
 * throws: Will throw an error when the provided task is invalid
 
-See the corresponding [jsdoc][vststask-jsdoc-url] and [typedef][vststask-typedef-url] sections for more info.
+See the corresponding [jsdoc][azptask-jsdoc-url] and [typedef][azptask-typedef-url] sections for more info.
 
 ### bumpTasks
 This function is **exactly** the same as the [bumpTask][bump-task-function-section] function except that it takes an array of task objects so that it can be used to bump multiple tasks. 
@@ -296,21 +298,23 @@ MIT - see license details [here][license-url]
 
 [Back to Top][top-url]
 
-[npm-version-badge]: https://img.shields.io/npm/v/azp-bump.svg
-[npm-downloads-badge]: https://img.shields.io/npm/dt/azp-bump.svg
+[npm-version-badge]: https://img.shields.io/npm/v/azp-bump?style=flat-square
+[npm-downloads-badge]: https://img.shields.io/npm/dt/azp-bump?style=flat-square
 [npm-package-url]: https://www.npmjs.com/package/azp-bump
 [license-url]: ./LICENSE
-[license-badge]: https://img.shields.io/github/license/swellaby/azp-bump.svg
-[tests-badge]: https://img.shields.io/appveyor/tests/swellaby/vsts-bump/master.svg?label=unit%20tests
-[appveyor-url]: https://ci.appveyor.com/project/swellaby/vsts-bump
-[appveyor-badge]: https://img.shields.io/appveyor/ci/swellaby/vsts-bump/master.svg?label=windows%20build
-[circleci-url]: https://circleci.com/gh/swellaby/vsts-bump
-[circleci-badge]: https://img.shields.io/circleci/project/github/swellaby/vsts-bump/master.svg?label=linux%20build
-[codecov-badge]: https://img.shields.io/codecov/c/github/swellaby/vsts-bump/master.svg
-[codecov-url]: https://codecov.io/gh/swellaby/vsts-bump
-[sonar-quality-gate-badge]: https://sonarcloud.io/api/project_badges/measure?project=swellaby%3Avsts-bump&metric=alert_status
-[sonar-url]: https://sonarcloud.io/dashboard?id=swellaby%3Avsts-bump
-[sonar-tests-url]: https://sonarcloud.io/component_measures?id=swellaby%3Avsts-bump&metric=tests
+[license-badge]: https://img.shields.io/github/license/swellaby/azp-bump?style=flat-square&color=blue
+[linux-ci-badge]: https://img.shields.io/azure-devops/build/swellaby/opensource/21/master?label=linux%20build&style=flat-square
+[linux-ci-url]: https://dev.azure.com/swellaby/OpenSource/_build/latest?definitionId=21
+[mac-ci-badge]: https://img.shields.io/azure-devops/build/swellaby/opensource/138/master?label=mac%20build&style=flat-square
+[mac-ci-url]: https://dev.azure.com/swellaby/OpenSource/_build/latest?definitionId=138
+[windows-ci-badge]: https://img.shields.io/azure-devops/build/swellaby/opensource/141/master?label=windows%20build&style=flat-square
+[windows-ci-url]: https://dev.azure.com/swellaby/OpenSource/_build/latest?definitionId=141
+[coverage-badge]: https://img.shields.io/azure-devops/coverage/swellaby/opensource/21/master?style=flat-square
+[coverage-url]: https://codecov.io/gh/swellaby/vscode-rust-test-adapter
+[tests-badge]: https://img.shields.io/azure-devops/tests/swellaby/opensource/21/master?label=unit%20tests&style=flat-square
+[tests-url]: https://dev.azure.com/swellaby/OpenSource/_build/latest?definitionId=21&view=ms.vss-test-web.build-test-results-tab
+[quality-gate-badge]: https://img.shields.io/sonar/quality_gate/swellaby:azp-bump?server=https%3A%2F%2Fsonarcloud.io&style=flat-square
+[sonar-project-url]: https://sonarcloud.io/dashboard?id=swellaby%3Aazp-bump
 [gulp-vsts-bump-url]: https://www.npmjs.com/package/gulp-vsts-bump
 [glob-primer-url]: https://github.com/isaacs/node-glob#glob-primer
 [cli-arguments-section]: #cli-arguments
@@ -318,15 +322,15 @@ MIT - see license details [here][license-url]
 [bump-task-manifest-files-function-section]: #bumptaskmanifestfiles
 [bump-task-function-section]: #bumptask
 [bump-tasks-function-section]: #bumptasks
-[create-bug-url]: https://github.com/swellaby/vsts-bump/issues/new?template=BUG_TEMPLATE.md&labels=bug,unreviewed&title=Bug:%20
-[create-question-url]: https://github.com/swellaby/vsts-bump/issues/new?template=QUESTION_TEMPLATE.md&labels=question,unreviewed&title=Q:%20
-[create-enhancement-url]: https://github.com/swellaby/vsts-bump/issues/new?template=ENHANCEMENT_TEMPLATE.md&labels=enhancement,unreviewed&title=E:%20
+[create-bug-url]: https://github.com/swellaby/azp-bump/issues/new?template=BUG_TEMPLATE.md&labels=bug,unreviewed&title=Bug:%20
+[create-question-url]: https://github.com/swellaby/azp-bump/issues/new?template=QUESTION_TEMPLATE.md&labels=question,unreviewed&title=Q:%20
+[create-enhancement-url]: https://github.com/swellaby/azp-bump/issues/new?template=ENHANCEMENT_TEMPLATE.md&labels=enhancement,unreviewed&title=E:%20
 [contrib-dev-url]: ./.github/CONTRIBUTING.md#developing
-[opts-jsdoc-url]: https://github.com/swellaby/vsts-bump/blob/master/lib/index.js#L8
-[opts-typedef-url]: https://github.com/swellaby/vsts-bump/blob/master/lib/index.d.ts#L10
-[bumpresult-jsdoc-url]: https://github.com/swellaby/vsts-bump/blob/master/lib/index.js#L42
-[bumpresult-typedef-url]: https://github.com/swellaby/vsts-bump/blob/master/lib/index.d.ts#L82
-[vststask-jsdoc-url]: https://github.com/swellaby/vsts-bump/blob/master/lib/index.js#L31
-[vststask-typedef-url]: https://github.com/swellaby/vsts-bump/blob/master/lib/index.d.ts#L105
+[opts-jsdoc-url]: https://github.com/swellaby/azp-bump/blob/master/lib/index.js#L8
+[opts-typedef-url]: https://github.com/swellaby/azp-bump/blob/master/lib/index.d.ts#L10
+[bumpresult-jsdoc-url]: https://github.com/swellaby/azp-bump/blob/master/lib/index.js#L42
+[bumpresult-typedef-url]: https://github.com/swellaby/azp-bump/blob/master/lib/index.d.ts#L82
+[azptask-jsdoc-url]: https://github.com/swellaby/azp-bump/blob/master/lib/index.js#L31
+[azptask-typedef-url]: https://github.com/swellaby/azp-bump/blob/master/lib/index.d.ts#L105
 [top-url]: #azp-bump
 [gulp-vsts-bump-url]: https://www.npmjs.com/package/gulp-vsts-bump
