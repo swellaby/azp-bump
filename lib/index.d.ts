@@ -1,4 +1,4 @@
-declare module VstsBump {
+declare module AzpBump {
     export type BumpType = 'major' | 'minor' | 'patch';
 
     /**
@@ -27,7 +27,7 @@ declare module VstsBump {
         quiet?: boolean,
         /**
          * Specifies what type to use for the version properties (Major, Minor, Patch) in the
-         * updated task manifest files, as VSTS will accept versions as either strings or numbers.
+         * updated task manifest files, as Azure Pipelines will accept versions as either strings or numbers.
          * Allowed options are: 'number' or 'string'.
          *
          * @type {string)}
@@ -97,12 +97,12 @@ declare module VstsBump {
     }
 
     /**
-     * Represents a VSTS Task Manifest
+     * Represents a Azure Pipelines Task Manifest
      *
      * @export
-     * @interface VstsTask
+     * @interface AzpTask
      */
-    export interface VstsTask {
+    export interface AzpTask {
         version: {
             Major: number|string,
             Minor: number|string,
@@ -114,19 +114,19 @@ declare module VstsBump {
      * Bumps the provided task object with the specified bump type.
      *
      * @export
-     * @param {VstsTask} task - The VSTS Task to bump.
+     * @param {AzpTask} task - The Azure Pipelines Task to bump.
      * @param {BumpType} [bumpType] - The type of bump to perform.
      */
-    export function bumpTask(task: VstsTask, bumpType?: BumpType): void;
+    export function bumpTask(task: AzpTask, bumpType?: BumpType): void;
 
     /**
      * Bumps the provided task objects with the specified bump type.
      *
      * @export
-     * @param {VstsTask[]} tasks - The VSTS Tasks to bump.
+     * @param {AzpTask[]} tasks - The Azure Pipelines Tasks to bump.
      * @param {BumpType} [bumpType] - The type of bump to perform.
      */
-    export function bumpTasks(tasks: VstsTask[], bumpType?: BumpType): void;
+    export function bumpTasks(tasks: AzpTask[], bumpType?: BumpType): void;
 
     /**
      * Bumps all of the task manifest files in the specified globs using the provided bump options.
@@ -140,4 +140,4 @@ declare module VstsBump {
     export function bumpTaskManifestFiles(fileGlobs: string[], opts?: Opts): Promise<BumpResult>;
 }
 
-export = VstsBump
+export = AzpBump

@@ -10,7 +10,7 @@ const sinon = require('sinon');
 const helpers = require('../../helpers');
 const index = require('../../../lib/index');
 
-suite('vsts-bump errors Suite:', () => {
+suite('azp-bump errors Suite:', () => {
     let logErrorStub;
     const args = [ 'src/*.js', 'test/**/*.js' ];
     let opts = {};
@@ -45,7 +45,7 @@ suite('vsts-bump errors Suite:', () => {
         commander.args = args;
         commanderParseStub = sinon.stub(commander, 'parse');
         const libStub = sinon.stub(index, 'bumpTaskManifestFiles').resolves({});
-        cli = require('../../../bin/vsts-bump');
+        cli = require('../../../bin/azp-bump');
         libStub.restore();
         commander.args = args;
     });
