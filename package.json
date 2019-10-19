@@ -4,7 +4,7 @@
   "description": "Lib/CLI for bumping the version of Azure Pipelines Task Manifest files",
   "license": "MIT",
   "main": "lib/index.js",
-  "bin": "bin/vsts-bump.js",
+  "bin": "bin/azp-bump.js",
   "types": "lib/index.d.ts",
   "author": {
     "email": "opensource@swellaby.com",
@@ -47,6 +47,8 @@
   "keywords": [
     "azure devops",
     "azure pipelines",
+    "azp",
+    "azp bump",
     "vsts",
     "vsts-bump",
     "vsts bump",
@@ -56,9 +58,9 @@
     "vsts-task-bump"
   ],
   "bugs": {
-    "url": "https://github.com/swellaby/vsts-bump/issues"
+    "url": "https://github.com/swellaby/azp-bump/issues"
   },
-  "homepage": "https://github.com/swellaby/vsts-bump",
+  "homepage": "https://github.com/swellaby/azp-bump",
   "devDependencies": {
     "@swellaby/eslint-config": "^2.0.0",
     "@swellaby/nyc-config": "^1.1.6",
