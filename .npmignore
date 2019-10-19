@@ -19,3 +19,4 @@ test/
 .renovate.json
 renovate.json
 sonar-project.properties
+.azure-pipelines
