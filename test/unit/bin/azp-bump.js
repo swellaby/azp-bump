@@ -9,7 +9,7 @@ const helpers = require('../../helpers');
 const index = require('../../../lib/index');
 const packageJson = require('../../../package.json');
 
-suite('bin/vsts-bump Suite:', () => {
+suite('bin/azp-bump Suite:', () => {
     const sandbox = sinon.createSandbox();
     const commanderVersionSpy = sinon.spy(commander, 'version');
     const commanderUsageSpy = sinon.spy(commander, 'usage');
@@ -36,7 +36,7 @@ suite('bin/vsts-bump Suite:', () => {
         commander.opts = () => null;
         commanderOptsStub = sinon.stub(commander, 'opts').callsFake(() => opts);
         commander.args = args;
-        cli = require('../../../bin/vsts-bump');
+        cli = require('../../../bin/azp-bump');
         commander.args = args;
     });
 
