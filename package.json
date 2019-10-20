@@ -42,7 +42,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/swellaby/vsts-bump.git"
+    "url": "git+https://github.com/swellaby/azp-bump.git"
   },
   "keywords": [
     "azure devops",
