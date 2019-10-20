@@ -16,8 +16,8 @@ To build and/or work on this project:
 
 Clone the repo, change into the directory where you cloned the directory, and then run the developer setup script
 ```sh     
-git clone https://github.com/swellaby/vsts-bump.git
-cd vsts-bump 
+git clone https://github.com/swellaby/azp-bump.git
+cd azp-bump 
 npm run dev:setup
 ```
 
@@ -98,9 +98,9 @@ npm run lint
 
  [Back to Top][top]
 
-[create-bug-url]: https://github.com/swellaby/vsts-bump/issues/new?template=BUG_TEMPLATE.md&labels=bug,unreviewed&title=Bug:%20
-[create-question-url]: https://github.com/swellaby/vsts-bump/issues/new?template=QUESTION_TEMPLATE.md&labels=question,unreviewed&title=Q:%20
-[create-enhancement-url]: https://github.com/swellaby/vsts-bump/issues/new?template=ENHANCEMENT_TEMPLATE.md&labels=enhancement,unreviewed
+[create-bug-url]: https://github.com/swellaby/azp-bump/issues/new?template=BUG_TEMPLATE.md&labels=bug,unreviewed&title=Bug:%20
+[create-question-url]: https://github.com/swellaby/azp-bump/issues/new?template=QUESTION_TEMPLATE.md&labels=question,unreviewed&title=Q:%20
+[create-enhancement-url]: https://github.com/swellaby/azp-bump/issues/new?template=ENHANCEMENT_TEMPLATE.md&labels=enhancement,unreviewed
 [nodejs-url]:https://nodejs.org/en/download/
 [vscode-url]: https://code.visualstudio.com/
 [husky-url]: https://www.npmjs.com/package/husky
@@ -113,4 +113,4 @@ npm run lint
 [unit-test]: ../test/unit/
 [comp-test]: ../test/component/
 [top]: CONTRIBUTING.md#contributing
-[functional-tests]: https://github.com/swellaby/vsts-bump-tests
+[functional-tests]: https://github.com/swellaby/azp-bump-tests
