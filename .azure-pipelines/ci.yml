@@ -65,7 +65,7 @@ steps:
   displayName: 'Publish artifact: full repo'
   inputs:
     PathtoPublish: '$(repoArchivePath)'
-    ArtifactName: '$(repoArtifactName)'
+    ArtifactName: '$(appRepoArtifactName)'
 
 - script: npm pack
   displayName: 'npm pack'
