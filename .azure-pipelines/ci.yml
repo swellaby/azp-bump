@@ -25,7 +25,7 @@ resources:
     endpoint: swellaby
 
 steps:
-- template: '../steps/run-tests.yml'
+- template: 'steps/run-tests.yml'
   parameters:
     envName: 'CI'
     envNameSuffix: ''
