@@ -1,0 +1,72 @@
+trigger:
+- master
+
+pr: none
+
+pool:
+  vmImage: 'Ubuntu-18.04'
+
+variables:
+- group: swellbot-github
+- group: 'Build Tools Skip Tokens'
+- group: azp-bump
+  packageBumpType: ''
+  packageTarballPath: $(Build.SourcesDirectory)/$(packageTarballFileName)
+  repoArchivePath: $(Build.ArtifactStagingDirectory)/$(appRepoArtifactName).tar.gz
+
+resources:
+  repositories:
+  - repository: templates
+    type: github
+    name: swellaby/azure-pipelines-templates
+    endpoint: swellaby
+
+steps:
+- template: '../steps/run-tests.yml'
+  parameters:
+    envName: 'CI'
+    envNameSuffix: ''
+
+- script: |
+    bash <(curl -s https://codecov.io/bash) -t $(codecovToken)
+  displayName: 'Publish coverage to Codecov'
+
+- script: |
+    git checkout master
+    git config user.name $(githubUser)
+    git config user.email $(githubEmail)
+    npm -f version $(packageBumpType) -m "chore: Bumped to version %s from release pipeline $(succinctAllSkipTokens)"
+    export PACKAGE_VERSION=$(node -e "console.log(require('./package.json').version);")
+    echo "##vso[task.setVariable variable=packageVersion]$PACKAGE_VERSION"
+    git add package-lock.json
+    git commit -n -m "chore: Bumped to version $PACKAGE_VERSION from release pipeline $(succinctAllSkipTokens)"
+    git push https://$(githubPat)@github.com/swellaby/azp-bump.git
+  displayName: 'Bump version, tag, and check-in'
+
+- template: templates/yml/any/sonar/run-sonar-cloud-cli-analysis.yml@templates
+  parameters:
+    projectVersion: $(packageVersion)
+
+- task: ArchiveFiles@2
+  displayName: 'Archive: full repo'
+  inputs:
+    rootFolderOrFile: '$(Build.SourcesDirectory)'
+    includeRootFolder: false
+    archiveType: tar
+    tarCompression: gz
+    archiveFile: '$(repoArchivePath)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish artifact: full repo'
+  inputs:
+    PathtoPublish: '$(repoArchivePath)'
+    ArtifactName: '$(repoArtifactName)'
+
+- script: npm pack
+  displayName: 'npm pack'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: package tarball'
+  inputs:
+    PathtoPublish: '$(packageTarballPath)'
+    ArtifactName: '$(packageTarballArtifactName)'
