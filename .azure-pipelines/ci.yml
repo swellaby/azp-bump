@@ -10,9 +10,12 @@ variables:
 - group: swellbot-github
 - group: 'Build Tools Skip Tokens'
 - group: azp-bump
-  packageBumpType: ''
-  packageTarballPath: $(Build.SourcesDirectory)/$(packageTarballFileName)
-  repoArchivePath: $(Build.ArtifactStagingDirectory)/$(appRepoArtifactName).tar.gz
+- name: packageBumpType
+  value: patch
+- name: packageTarballPath
+  value: $(Build.SourcesDirectory)/$(packageTarballFileName)
+- name: repoArchivePath
+  value: $(Build.ArtifactStagingDirectory)/$(appRepoArtifactName).tar.gz
 
 resources:
   repositories:
