@@ -14,14 +14,9 @@ resources:
     endpoint: swellaby
 
 steps:
-- template: templates/yml/node/combo/npm-build-validation-xunit-cobertura.yml@templates
+- template: '../steps/run-tests.yml'
   parameters:
-    publishTestResults:
-      taskDisplayName: 'Publish unit test results'
-      testResultsFormat: 'JUnit'
-      testResultsFiles: 'xunit.xml'
-      searchFolder: '$(Build.SourcesDirectory)/.testresults/unit'
-      testRunTitle: 'azp-bump::Unit Tests::Sonar PR - Build $(Build.BuildId)'
+    envName: 'Sonar'
 
 - script: |
     export PACKAGE_VERSION=$(node -e "console.log(require('./package.json').version);")

@@ -20,12 +20,6 @@ steps:
     npm run prepare - successful
   displayName: 'Temp npm version set'
 
-- template: templates/yml/node/combo/npm-coverage-validation-xunit-cobertura.yml@templates
+- template: '../steps/run-tests.yml'
   parameters:
-    publishTestResults:
-      taskDisplayName: 'Publish unit test results'
-      testResultsFormat: 'JUnit'
-      testResultsFiles: 'xunit.xml'
-      searchFolder: '$(Build.SourcesDirectory)/.testresults/unit'
-      testRunTitle: 'azp-bump::Unit Tests::Windows PR - Build $(Build.BuildId)'
-
+    envName: 'Windows'
