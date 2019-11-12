@@ -13,6 +13,10 @@ resources:
     name: swellaby/azure-pipelines-templates
     endpoint: swellaby
 
+# Unfortunately multi-checkout is still not yet supported.
+# The commented out portions below are what we'll be able to switch to
+# once it becomes enabled.
+# https://github.com/microsoft/azure-pipelines-yaml/blob/master/design/multi-checkout.md
 variables:
   testDir: '$(Agent.TempDirectory)/functional-tests'
   # appDir: $(Build.SourcesDirectory)/app
@@ -26,6 +30,7 @@ steps:
 
 - script: |
     git clone https://github.com/swellaby/azp-bump-tests.git $(testDir)
+  displayName: 'Clone functional tests repo'
 
 - script: npm pack
   displayName: 'npm pack'
