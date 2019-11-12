@@ -56,3 +56,10 @@ steps:
     verbose: false
     customCommand: test
   displayName: 'Run functional tests'
+
+- template: templates/yml/any/publish-test-results.yml@templates
+  parameters:
+    taskDisplayName: 'Publish functional test results'
+    testResultsFiles: 'xunit.xml'
+    searchFolder: $(testDir)/.testresults
+    testRunTitle: 'azp-bump::Functional Tests::Linux PR - Build $(Build.BuildId)'
