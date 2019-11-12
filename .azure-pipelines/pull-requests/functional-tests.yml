@@ -15,7 +15,7 @@ resources:
 
 variables:
   testDir: 'functional-tests'
-  appDir: app
+  appDir: $(Build.SourcesDirectory)/app
   appTarballPath: $(Build.SourcesDirectory)/functional-tests/azp-bump-$(packageVersion).tgz
 
 steps:
