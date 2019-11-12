@@ -14,13 +14,13 @@ resources:
     endpoint: swellaby
 
 variables:
-  testDir: 'functional-tests'
-  appDir: $(Build.SourcesDirectory)/app
-  appTarballPath: $(Build.SourcesDirectory)/functional-tests/azp-bump-$(packageVersion).tgz
+  testDir: '$(Agent.TempDirectory)/functional-tests'
+  # appDir: $(Build.SourcesDirectory)/app
+  appTarballPath: $(Build.SourcesDirectory)/azp-bump-$(packageVersion).tgz
 
 steps:
-- checkout: self
-  path: $(appDir)
+# - checkout: self
+#   path: $(appDir)
 # - checkout: github://swellaby/azp-bump-tests
 #   path: 'functional-tests'
 
@@ -29,20 +29,25 @@ steps:
 
 - script: npm pack
   displayName: 'npm pack'
-  workingDirectory: $(appDir)
+  # workingDirectory: $(appDir)
 
 - script: |
     export PACKAGE_VERSION=$(node -e "console.log(require('./package.json').version);")
     echo "##vso[task.setvariable variable=packageVersion]$PACKAGE_VERSION"
   displayName: 'Extract package version'
-  workingDirectory: $(appDir)
+  # workingDirectory: $(appDir)
+
+- task: Npm@1
+  inputs:
+    workingDir: $(testDir)
+  displayName: 'Install test dependencies'
 
 - task: Npm@1
   inputs:
     command: custom
     customCommand: 'run target:install -- $(appTarballPath)'
     workingDir: $(testDir)
-  displayName: 'Install app'
+  displayName: 'Prep tests'
 
 - task: Npm@1
   inputs:
