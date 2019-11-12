@@ -1,0 +1,70 @@
+trigger: none
+
+pr:
+- master
+
+pool:
+  vmImage: 'Ubuntu-18.04'
+
+resources:
+  repositories:
+  - repository: templates
+    type: github
+    name: swellaby/azure-pipelines-templates
+    endpoint: swellaby
+
+# Unfortunately multi-checkout is still not yet supported.
+# The commented out portions below are what we'll be able to switch to
+# once it becomes enabled.
+# https://github.com/microsoft/azure-pipelines-yaml/blob/master/design/multi-checkout.md
+variables:
+  testDir: '$(Agent.TempDirectory)/functional-tests'
+  # appDir: $(Build.SourcesDirectory)/app
+  appTarballPath: $(Build.SourcesDirectory)/azp-bump-$(packageVersion).tgz
+
+steps:
+# - checkout: self
+#   path: $(appDir)
+# - checkout: github://swellaby/azp-bump-tests
+#   path: 'functional-tests'
+
+- script: |
+    git clone https://github.com/swellaby/azp-bump-tests.git $(testDir)
+  displayName: 'Clone functional tests repo'
+
+- script: npm pack
+  displayName: 'npm pack'
+  # workingDirectory: $(appDir)
+
+- script: |
+    export PACKAGE_VERSION=$(node -e "console.log(require('./package.json').version);")
+    echo "##vso[task.setvariable variable=packageVersion]$PACKAGE_VERSION"
+  displayName: 'Extract package version'
+  # workingDirectory: $(appDir)
+
+- task: Npm@1
+  inputs:
+    workingDir: $(testDir)
+  displayName: 'Install test dependencies'
+
+- task: Npm@1
+  inputs:
+    command: custom
+    customCommand: 'run target:install -- $(appTarballPath)'
+    workingDir: $(testDir)
+  displayName: 'Prep tests'
+
+- task: Npm@1
+  inputs:
+    command: custom
+    workingDir: '$(testDir)'
+    verbose: false
+    customCommand: test
+  displayName: 'Run functional tests'
+
+- template: templates/yml/any/publish-test-results.yml@templates
+  parameters:
+    taskDisplayName: 'Publish functional test results'
+    testResultsFiles: 'xunit.xml'
+    searchFolder: $(testDir)/.testresults
+    testRunTitle: 'azp-bump::Functional Tests::Linux PR - Build $(Build.BuildId)'
