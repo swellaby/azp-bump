@@ -15,6 +15,7 @@ suite('utils Suite:', () => {
 
     setup(() => {
         opts = {};
+        semver.inc('');
         semverIncStub = Sinon.stub(semver, 'inc').callsFake(() => helpers.bumpedVersion);
     });
 
@@ -328,6 +329,9 @@ suite('utils Suite:', () => {
 
         setup(() => {
             taskJson = helpers.createSampleTaskContents(helpers.majorVersionStr, helpers.minorVersionStr, helpers.patchVersionStr);
+            semver.major('v1.0.0');
+            semver.minor('v1.0.0');
+            semver.patch('v1.0.0');
             semverMajorStub = Sinon.stub(semver, 'major').callsFake(() => helpers.majorVersion);
             semverMinorStub = Sinon.stub(semver, 'minor').callsFake(() => helpers.minorVersion);
             semverPatchStub = Sinon.stub(semver, 'patch').callsFake(() => helpers.patchVersion);
