@@ -66,7 +66,7 @@
   "homepage": "https://github.com/swellaby/azp-bump",
   "devDependencies": {
     "@swellaby/eslint-config": "^2.0.0",
-    "@swellaby/nyc-config": "^1.1.6",
+    "@swellaby/nyc-config": "^2.0.0",
     "chai": "^4.2.0",
     "eslint": "^6.1.0",
     "husky": "^3.0.3",
