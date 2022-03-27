@@ -1,6 +1,6 @@
 {
   "name": "azp-bump",
-  "version": "3.1.24",
+  "version": "3.1.25",
   "description": "Lib/CLI for bumping the version of Azure Pipelines Task Manifest files",
   "license": "MIT",
   "main": "lib/index.js",
